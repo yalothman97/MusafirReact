@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
-import * as actionCreators from "./store/actions/index";
+
+// Actions
+import * as actionCreators from "./store/actions";
 
 class BookForm extends Component {
   constructor(props) {

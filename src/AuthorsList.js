@@ -1,33 +1,39 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 // Components
 import AddAuthorCard from "./AddAuthorCard";
 import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
-
-import { connect } from "react-redux";
+import Loading from "./Loading";
 
 class AuthorsList extends Component {
   render() {
-    const authorCards = this.props.filteredAuthors.map(author => (
+    const { loading, filteredAuthors } = this.props;
+
+    const authorCards = filteredAuthors.map(author => (
       <AuthorCard key={author.first_name + author.last_name} author={author} />
     ));
 
-    return (
-      <div className="authors">
-        <h3>Authors</h3>
-        <SearchBar />
-        <div className="row">
-          <AddAuthorCard /> {authorCards}
+    if (loading) {
+      return <Loading />;
+    } else {
+      return (
+        <div className="authors">
+          <h3>Authors</h3>
+          <SearchBar />
+          <div className="row">
+            <AddAuthorCard /> {authorCards}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    authors: state.rootAuthors.authors,
+    loading: state.rootAuthors.loading,
     filteredAuthors: state.rootAuthors.filteredAuthors
   };
 };

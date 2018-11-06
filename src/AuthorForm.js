@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import * as actionCreators from "./store/actions/index";
+// Actions
+import * as actionCreators from "./store/actions";
 
 class AuthorForm extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class AuthorForm extends Component {
 
   submitAuthor(event) {
     event.preventDefault();
-    this.props.onPostAuthor(this.state);
+    this.props.postAuthor(this.state);
   }
 
   onTextchange(event) {
@@ -71,7 +72,7 @@ class AuthorForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPostAuthor: newAuthor => dispatch(actionCreators.postAuthor(newAuthor))
+    postAuthor: newAuthor => dispatch(actionCreators.postAuthor(newAuthor))
   };
 };
 
