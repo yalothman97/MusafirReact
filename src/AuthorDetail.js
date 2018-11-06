@@ -13,8 +13,9 @@ class AuthorDetail extends Component {
   componentDidMount() {
     this.props.getAuthor(this.props.match.params.authorID);
   }
+
   render() {
-    if (!this.props.author.id) {
+    if (this.props.loading) {
       return <Loading />;
     } else {
       const author = this.props.author;
@@ -38,7 +39,8 @@ class AuthorDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    author: state.rootAuthor.author
+    author: state.rootAuthor.author,
+    loading: state.rootAuthor.loading
   };
 };
 

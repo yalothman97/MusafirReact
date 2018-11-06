@@ -13,7 +13,8 @@ export const fetchAuthors = () => {
       .then(res => res.data)
       .then(authors =>
         dispatch({ type: actionTypes.FETCH_AUTHORS, payload: authors })
-      );
+      )
+      .catch(error => console.error(error));
   };
 };
 
@@ -35,6 +36,6 @@ export const postAuthor = newAuthor => {
           payload: createdAuthor
         })
       )
-      .catch(error => console.log(error.response));
+      .catch(error => console.error(error.response.data));
   };
 };
