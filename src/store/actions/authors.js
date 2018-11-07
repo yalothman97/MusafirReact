@@ -28,7 +28,7 @@ export const filterAuthors = query => {
 export const postAuthor = newAuthor => {
   return dispatch => {
     instance
-      .post("https://the-index-api.herokuapp.com/api/authors/", newAuthor)
+      .post("/api/authors/", newAuthor)
       .then(res => res.data)
       .then(createdAuthor =>
         dispatch({
