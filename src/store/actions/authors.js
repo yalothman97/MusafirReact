@@ -7,14 +7,17 @@ const instance = axios.create({
 });
 
 export const fetchAuthors = () => {
-  return dispatch => {
-    instance
-      .get("/api/authors/")
-      .then(res => res.data)
-      .then(authors =>
-        dispatch({ type: actionTypes.FETCH_AUTHORS, payload: authors })
-      )
-      .catch(error => console.error(error));
+  return async dispatch => {
+    try {
+      const res = await instance.get("/api/authors/");
+      const authors = res.data;
+      dispatch({
+        type: actionTypes.FETCH_AUTHORS,
+        payload: authors
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 
@@ -25,17 +28,17 @@ export const filterAuthors = query => {
   };
 };
 
-export const postAuthor = newAuthor => {
-  return dispatch => {
-    instance
-      .post("/api/authors/", newAuthor)
-      .then(res => res.data)
-      .then(createdAuthor =>
-        dispatch({
-          type: actionTypes.POST_AUTHOR,
-          payload: createdAuthor
-        })
-      )
-      .catch(error => console.error(error.response.data));
+export const postAuthor = author => {
+  return async dispatch => {
+    try {
+      const res = await instance.post("/api/authors/", author);
+      const newAuthor = res.data;
+      dispatch({
+        type: actionTypes.POST_AUTHOR,
+        payload: newAuthor
+      });
+    } catch (error) {
+      console.error(error.response.data);
+    }
   };
 };

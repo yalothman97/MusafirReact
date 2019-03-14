@@ -11,18 +11,19 @@ const setLoading = () => ({
 });
 
 export const fetchAuthorDetail = authorID => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(setLoading());
-    instance
-      .get(`/api/authors/${authorID}/`)
-      .then(res => res.data)
-      .then(author =>
-        dispatch({
-          type: actionTypes.FETCH_AUTHOR_DETAIL,
-          payload: author
-        })
-      )
-      .catch(err => console.error(err));
+    try {
+      const res = await instance.get(`/api/authors/${authorID}/`);
+      const author = res.data;
+
+      dispatch({
+        type: actionTypes.FETCH_AUTHOR_DETAIL,
+        payload: author
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 
@@ -31,16 +32,16 @@ export const postBook = (book, authorID) => {
     ...book,
     authors: [authorID]
   };
-  return dispatch => {
-    instance
-      .post(`/api/books/`, book)
-      .then(res => res.data)
-      .then(createdBook =>
-        dispatch({
-          type: actionTypes.POST_BOOK,
-          payload: createdBook
-        })
-      )
-      .catch(error => console.error(error.response.data));
+  return async dispatch => {
+    try {
+      const res = await instance.post(`/api/books/`, book);
+      const newBook = res.data;
+      dispatch({
+        type: actionTypes.POST_BOOK,
+        payload: newBook
+      });
+    } catch (error) {
+      console.error(error.response.data);
+    }
   };
 };

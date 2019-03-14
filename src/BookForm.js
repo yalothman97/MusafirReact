@@ -5,47 +5,57 @@ import { connect } from "react-redux";
 import * as actionCreators from "./store/actions";
 
 class BookForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "",
-      color: ""
-    };
-    this.onTextChange = this.onTextChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  state = {
+    title: "",
+    color: ""
+  };
 
-  onTextChange(event) {
+  onTextChange = event =>
     this.setState({ [event.target.name]: event.target.value });
-  }
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
     this.props.postBook(this.state, this.props.authorID);
-  }
+  };
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Book Name"
-          onChange={this.onTextChange}
-        />
-        <select name="color" onChange={this.onTextChange}>
-          <option value="">Color</option>
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="green">Green</option>
-          <option value="yellow">Yellow</option>
-          <option value="black">Black</option>
-          <option value="white">White</option>
-          <option value="grey">Grey</option>
-          <option value="purple">Purple</option>
-        </select>
-        <input type="submit" value="Add Book" />
-      </form>
+      <div className="mt-5 p-2">
+        <form onSubmit={this.onSubmit}>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Title</span>
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              name="title"
+              onChange={this.onTextChange}
+            />
+          </div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Color</span>
+            </div>
+            <select
+              name="color"
+              className="form-control"
+              onChange={this.onTextChange}
+            >
+              <option value="">----</option>
+              <option value="white">White</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="yellow">Yellow</option>
+              <option value="black">Black</option>
+              <option value="grey">Grey</option>
+              <option value="purple">Purple</option>
+            </select>
+          </div>
+          <input type="submit" value="Add Book" />
+        </form>
+      </div>
     );
   }
 }
