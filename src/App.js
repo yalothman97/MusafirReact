@@ -10,7 +10,7 @@ import Signup from "./SignupForm";
 import Login from "./LoginForm";
 import Loading from "./Loading";
 
-function App({ loading }) {
+function App(props, { loading }) {
   return (
     <div id="app" className="container-fluid">
       <div className="row">
@@ -24,8 +24,17 @@ function App({ loading }) {
             <Switch>
               <Route path="/authors/:authorID" component={AuthorDetail} />
               <Route path="/authors" component={AuthorsList} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
+              {!!props.user ? (
+                <>
+                  {" "}
+                  <Redirect to="/authors" />{" "}
+                </>
+              ) : (
+                <>
+                  <Route path="/signup" component={Signup} />
+                  <Route path="/login" component={Login} />
+                </>
+              )}
               <Redirect to="/authors" />
             </Switch>
           )}
@@ -36,7 +45,8 @@ function App({ loading }) {
 }
 
 const mapStateToProps = state => ({
-  loading: state.rootAuthors.loading || state.rootBooks.loading
+  loading: state.rootAuthors.loading || state.rootBooks.loading,
+  user: state.user.user
 });
 
 export default connect(mapStateToProps)(App);
