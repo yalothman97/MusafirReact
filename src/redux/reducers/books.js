@@ -1,25 +1,25 @@
-import { SET_AUTHORS, ADD_AUTHOR } from "../actions/actionTypes";
+import { SET_BOOKS, ADD_BOOK } from "../actions/actionTypes";
 
 const initialState = {
-  authors: [],
+  books: [],
   loading: true
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_AUTHORS:
-      const authors = action.payload;
+    case SET_BOOKS:
+      const books = action.payload;
       return {
         ...state,
-        authors,
+        books,
         loading: false
       };
 
-    case ADD_AUTHOR:
-      const newAuthor = action.payload;
+    case ADD_BOOK:
+      const newBook = action.payload;
       return {
         ...state,
-        authors: [newAuthor, ...state.authors]
+        books: [newBook, ...state.books]
       };
 
     default:

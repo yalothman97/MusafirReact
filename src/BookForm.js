@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // Actions
-import * as actionCreators from "./store/actions";
+import { postBook } from "./redux/actions";
 
 class BookForm extends Component {
   state = {
     title: "",
-    color: ""
+    color: "",
+    authors: [this.props.authorID]
   };
 
   onTextChange = event =>
@@ -15,7 +16,7 @@ class BookForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.postBook(this.state, this.props.authorID);
+    this.props.postBook(this.state);
   };
 
   render() {
@@ -62,15 +63,13 @@ class BookForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    authors: state.rootAuthors.authors,
-    author: state.rootAuthor.author
+    authors: state.authors
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    postBook: (book, authorID) =>
-      dispatch(actionCreators.postBook(book, authorID))
+    postBook: (book, authorID) => dispatch(postBook(book, authorID))
   };
 };
 

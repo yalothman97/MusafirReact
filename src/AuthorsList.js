@@ -5,36 +5,44 @@ import { connect } from "react-redux";
 import AddAuthorCard from "./AddAuthorCard";
 import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
-import Loading from "./Loading";
 
 class AuthorsList extends Component {
-  render() {
-    const { loading, filteredAuthors } = this.props;
+  state = {
+    query: ""
+  };
 
-    const authorCards = filteredAuthors.map(author => (
-      <AuthorCard key={author.first_name + author.last_name} author={author} />
+  setQuery = query => this.setState({ query });
+
+  filterAuthors = () => {
+    const query = this.state.query.toLowerCase();
+    return this.props.authors.filter(author => {
+      return `${author.first_name} ${author.last_name}`
+        .toLowerCase()
+        .includes(query);
+    });
+  };
+
+  render() {
+    const authorCards = this.filterAuthors().map(author => (
+      <AuthorCard key={author.id} author={author} />
     ));
 
-    if (loading) {
-      return <Loading />;
-    } else {
-      return (
-        <div className="authors">
-          <h3>Authors</h3>
-          <SearchBar />
-          <div className="row">
-            <AddAuthorCard /> {authorCards}
-          </div>
+    return (
+      <div className="authors">
+        <h3>Authors</h3>
+        <SearchBar onChange={this.setQuery} />
+        <div className="row">
+          <AddAuthorCard />
+          {authorCards}
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    loading: state.rootAuthors.loading,
-    filteredAuthors: state.rootAuthors.filteredAuthors
+    authors: state.rootAuthors.authors
   };
 };
 

@@ -1,5 +1,3 @@
-export { fetchAuthorDetail, postBook } from "./author";
-
-export { fetchAuthors, filterAuthors, postAuthor } from "./authors";
-
+export { fetchAuthors, postAuthor } from "./authors";
+export { fetchBooks, postBook } from "./books";
 export { login, logout, signup } from "./authentication";

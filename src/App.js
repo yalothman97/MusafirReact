@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
-// Actions
-import * as actionCreators from "./store/actions";
 
 // Components
 import Sidebar from "./Sidebar";
@@ -11,20 +8,19 @@ import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
 import Signup from "./SignupForm";
 import Login from "./LoginForm";
+import Loading from "./Loading";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchAllAuthors();
-  }
-
-  render() {
-    return (
-      <div id="app" className="container-fluid">
-        <div className="row">
-          <div className="col-2">
-            <Sidebar />
-          </div>
-          <div className="content col-10">
+function App({ loading }) {
+  return (
+    <div id="app" className="container-fluid">
+      <div className="row">
+        <div className="col-2">
+          <Sidebar />
+        </div>
+        <div className="content col-10">
+          {loading ? (
+            <Loading />
+          ) : (
             <Switch>
               <Route path="/authors/:authorID" component={AuthorDetail} />
               <Route path="/authors" component={AuthorsList} />
@@ -32,22 +28,15 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Redirect to="/authors" />
             </Switch>
-          </div>
+          )}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllAuthors: () => dispatch(actionCreators.fetchAuthors())
-  };
-};
+const mapStateToProps = state => ({
+  loading: state.rootAuthors.loading || state.rootBooks.loading
+});
 
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(App)
-);
+export default connect(mapStateToProps)(App);

@@ -1,6 +1,6 @@
-import * as actionTypes from "./actionTypes";
-
 import axios from "axios";
+
+import { SET_AUTHORS, ADD_AUTHOR } from "./actionTypes";
 
 const instance = axios.create({
   baseURL: "https://the-index-api.herokuapp.com"
@@ -12,19 +12,12 @@ export const fetchAuthors = () => {
       const res = await instance.get("/api/authors/");
       const authors = res.data;
       dispatch({
-        type: actionTypes.FETCH_AUTHORS,
+        type: SET_AUTHORS,
         payload: authors
       });
     } catch (error) {
       console.error(error);
     }
-  };
-};
-
-export const filterAuthors = query => {
-  return {
-    type: actionTypes.FILTER_AUTHORS,
-    payload: query
   };
 };
 
@@ -34,7 +27,7 @@ export const postAuthor = author => {
       const res = await instance.post("/api/authors/", author);
       const newAuthor = res.data;
       dispatch({
-        type: actionTypes.POST_AUTHOR,
+        type: ADD_AUTHOR,
         payload: newAuthor
       });
     } catch (error) {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // Actions
-import * as actionCreators from "./store/actions";
+import { postAuthor } from "./redux/actions";
 
 class AuthorForm extends Component {
   state = {
@@ -68,7 +68,7 @@ class AuthorForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postAuthor: newAuthor => dispatch(actionCreators.postAuthor(newAuthor))
+    postAuthor: newAuthor => dispatch(postAuthor(newAuthor))
   };
 };
 

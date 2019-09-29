@@ -1,56 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 // Components
 import BookTable from "./BookTable";
-import Loading from "./Loading";
 import AddBookModal from "./AddBookModal";
 
-import { connect } from "react-redux";
+function AuthorDetail({ authors, books, match }) {
+  const { authorID } = match.params;
+  const author = authors.find(author => author.id === +authorID);
 
-import * as actionCreators from "./store/actions/index";
+  if (!author) return <Redirect to="/" />;
 
-class AuthorDetail extends Component {
-  componentDidMount() {
-    this.props.getAuthor(this.props.match.params.authorID);
-  }
+  const authorName = `${author.first_name} ${author.last_name}`;
+  const authorBooks = author.books.map(bookID =>
+    books.find(book => book.id === bookID)
+  );
 
-  render() {
-    if (this.props.loading) {
-      return <Loading />;
-    } else {
-      const author = this.props.author;
-      return (
-        <div className="author">
-          <div>
-            <h3>{author.first_name + " " + author.last_name}</h3>
-            <img
-              src={author.imageUrl}
-              className="img-thumbnail img-fluid"
-              alt={author.first_name + " " + author.last_name}
-            />
-          </div>
-          <BookTable books={author.books} />
-          <AddBookModal authorID={author.id} />
-        </div>
-      );
-    }
-  }
+  return (
+    <div className="author">
+      <div>
+        <h3>{authorName}</h3>
+        <img
+          src={author.imageUrl}
+          className="img-thumbnail img-fluid"
+          alt={authorName}
+        />
+      </div>
+      <BookTable books={authorBooks} />
+      <AddBookModal authorID={author.id} />
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
   return {
-    author: state.rootAuthor.author,
-    loading: state.rootAuthor.loading
+    authors: state.rootAuthors.authors,
+    books: state.rootBooks.books
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getAuthor: authorID => dispatch(actionCreators.fetchAuthorDetail(authorID))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthorDetail);
+export default connect(mapStateToProps)(AuthorDetail);
