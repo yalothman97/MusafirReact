@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #c8c8c8;
+  background: #ffffff;
 }
 
 #app {
@@ -75,8 +75,8 @@ body {
 }
 
 .card:hover {
-  border-color: #800c0c;
-  color: #f00c0c;
+  border-color: pink;
+  color: grey;
   cursor: pointer;
 }
 
@@ -95,4 +95,8 @@ td button.btn {
 .spinner {
   height: 100vh;
   line-height: 100vh;
+}
+
+.logo {
+  color: #cdb2ab;
 }

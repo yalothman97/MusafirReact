@@ -1,6 +1,5 @@
 // Author Actions
-export const SET_AUTHORS = "SET_AUTHORS";
-export const ADD_AUTHOR = "ADD_AUTHOR";
+export const FETCH_PACKAGES = "FETCH_PACKAGES";
 
 // Book Actions
 export const SET_BOOKS = "SET_BOOKS";

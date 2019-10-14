@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // Components
-import AddAuthorCard from "./AddAuthorCard";
 import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
 
@@ -31,10 +30,7 @@ class AuthorsList extends Component {
       <div className="authors">
         <h3>Authors</h3>
         <SearchBar onChange={this.setQuery} />
-        <div className="row">
-          {!!this.props.user ? <AddAuthorCard /> : <> </>}
-          {authorCards}
-        </div>
+        <div className="row">{authorCards}</div>
       </div>
     );
   }

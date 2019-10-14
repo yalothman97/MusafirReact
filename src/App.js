@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 
 // Components
 import Sidebar from "./Sidebar";
-import AuthorsList from "./AuthorsList";
-import AuthorDetail from "./AuthorDetail";
+import PackageList from "./Components/PackageList";
 import Signup from "./SignupForm";
 import Login from "./LoginForm";
 import Loading from "./Loading";
@@ -22,12 +21,12 @@ function App(props, { loading }) {
             <Loading />
           ) : (
             <Switch>
-              <Route path="/authors/:authorID" component={AuthorDetail} />
-              <Route path="/authors" component={AuthorsList} />
+              {/* <Route path="/packages/:packageID" component={PackageDetail} /> */}
+              <Route path="/packages" component={PackageList} />
               {!!props.user ? (
                 <>
                   {" "}
-                  <Redirect to="/authors" />{" "}
+                  <Redirect to="/packages" />{" "}
                 </>
               ) : (
                 <>
@@ -35,7 +34,7 @@ function App(props, { loading }) {
                   <Route path="/login" component={Login} />
                 </>
               )}
-              <Redirect to="/authors" />
+              <Redirect to="/packages" />
             </Switch>
           )}
         </div>
@@ -45,7 +44,7 @@ function App(props, { loading }) {
 }
 
 const mapStateToProps = state => ({
-  loading: state.rootAuthors.loading || state.rootBooks.loading,
+  loading: state.rootPackages.loading,
   user: state.user.user
 });
 
