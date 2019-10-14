@@ -1,17 +1,18 @@
 import { SET_CURRENT_USER } from "./actionTypes";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import instance from "./instance";
 
 const setCurrentUser = token => {
   console.log(token);
   let user = null;
   if (token) {
     localStorage.setItem("token", token);
-    axios.defaults.headers.common.Authorization = `jwt ${token}`;
+    instance.defaults.headers.common.Authorization = `jwt ${token}`;
     user = jwt_decode(token);
   } else {
     localStorage.removeItem("token");
-    delete axios.defaults.headers.common.Authorization;
+    delete instance.defaults.headers.common.Authorization;
     user = null;
   }
 
@@ -24,12 +25,9 @@ const setCurrentUser = token => {
 export const login = userData => {
   return async dispatch => {
     try {
-      const res = await axios.post(
-        "https://the-index-api.herokuapp.com/login/",
-        userData
-      );
+      const res = await instance.post("login/", userData);
       const user = res.data;
-      dispatch(setCurrentUser(user.token));
+      dispatch(setCurrentUser(user.access));
     } catch (err) {
       console.error(err);
     }
@@ -39,12 +37,9 @@ export const login = userData => {
 export const signup = userData => {
   return async dispatch => {
     try {
-      const res = await axios.post(
-        "https://the-index-api.herokuapp.com/signup/",
-        userData
-      );
+      const res = await instance.post("register/", userData);
       const user = res.data;
-      dispatch(setCurrentUser(user.token));
+      dispatch(setCurrentUser(user.access));
     } catch (err) {
       console.error(err);
     }
