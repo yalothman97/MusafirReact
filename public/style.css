@@ -100,3 +100,7 @@ td button.btn {
 .logo {
   color: #cdb2ab;
 }
+
+.roundedCorners {
+  border-radius: 25px;
+}

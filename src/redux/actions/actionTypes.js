@@ -1,5 +1,6 @@
-// Author Actions
+// Package Actions
 export const FETCH_PACKAGES = "FETCH_PACKAGES";
+export const GET_PACKAGE = "GET_PACKAGE";
 
 // Book Actions
 export const SET_BOOKS = "SET_BOOKS";

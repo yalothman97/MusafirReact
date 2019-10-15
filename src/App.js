@@ -8,6 +8,7 @@ import PackageList from "./Components/PackageList";
 import Signup from "./SignupForm";
 import Login from "./LoginForm";
 import Loading from "./Loading";
+import PackageDetail from "./Components/PackageDetail";
 
 function App(props, { loading }) {
   return (
@@ -18,7 +19,7 @@ function App(props, { loading }) {
             <Loading />
           ) : (
             <Switch>
-              {/* <Route path="/packages/:packageID" component={PackageDetail} /> */}
+              <Route path="/packages/:packageID" component={PackageDetail} />
               <Route path="/packages" component={PackageList} />
               {!!props.user ? (
                 <>

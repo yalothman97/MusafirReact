@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import PackageCard from "./PackageCard";
 
 import { connect } from "react-redux";
+import Navbar from "./Navbar";
 
 class Home extends Component {
   render() {
