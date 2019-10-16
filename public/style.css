@@ -104,3 +104,12 @@ td button.btn {
 .roundedCorners {
   border-radius: 25px;
 }
+
+.navstyle {
+  font-family: Sofia Pro;
+  color: black;
+}
+
+.bg {
+  background-color: black;
+}
