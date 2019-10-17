@@ -8,7 +8,7 @@ const setCurrentUser = token => {
   let user = null;
   if (token) {
     localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.common.Authorization = `jwt ${token}`;
     user = jwt_decode(token);
   } else {
     localStorage.removeItem("token");
@@ -25,7 +25,7 @@ const setCurrentUser = token => {
 export const login = userData => {
   return async dispatch => {
     try {
-      const res = await instance.post("/login/", userData);
+      const res = await instance.post("login/", userData);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
     } catch (err) {
@@ -37,7 +37,7 @@ export const login = userData => {
 export const signup = userData => {
   return async dispatch => {
     try {
-      const res = await instance.post("/register/", userData);
+      const res = await instance.post("register/", userData);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
     } catch (err) {
