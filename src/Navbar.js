@@ -1,18 +1,31 @@
+/**
+ * Clean up "dead" code and "dead" imports
+ */
+
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
 import Logout from "./Logout";
 import { connect } from "react-redux";
 
 // Logo
-import logo from "./assets/theindex.svg";
+// import logo from "./assets/theindex.svg";
 
+/**
+ * You found this library...that's greeeat :/
+ */
 // Bootstrap
 import { Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 
+/**
+ * This can be a functional component
+ */
 class Navbar extends Component {
   render() {
     return (
       <div>
+        {/* you don't need to wrap a div around a single component */}
+        {/* when you finally start actually using this `react-bootstrap` navbar it 
+          _might_ conflict heavily with `Link` from `react-router` */}
         <Navbar bg="light" expand="lg">
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

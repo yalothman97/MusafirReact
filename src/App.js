@@ -3,13 +3,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Components
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar"; // <-- dead
 import PackageList from "./Components/PackageList";
 import Signup from "./SignupForm";
 import Login from "./LoginForm";
 import Loading from "./Loading";
 import PackageDetail from "./Components/PackageDetail";
 
+/**
+ * does this combination of params and destructuring actually work?
+ */
 function App(props, { loading }) {
   return (
     <div id="app" className="container-fluid">
@@ -21,11 +24,9 @@ function App(props, { loading }) {
             <Switch>
               <Route path="/packages/:packageID" component={PackageDetail} />
               <Route path="/packages" component={PackageList} />
+              {/* The ternary operator is clever. I like it. */}
               {!!props.user ? (
-                <>
-                  {" "}
-                  <Redirect to="/packages" />{" "}
-                </>
+                <Redirect to="/packages" />
               ) : (
                 <>
                   <Route path="/signup" component={Signup} />
