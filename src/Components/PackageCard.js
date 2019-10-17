@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+/**
+ * functional component
+ */
 export class PackageCard extends Component {
   render() {
     const packageBundle = this.props.packageBundle;
     return (
       <div className="col-lg-4 col-md-6 col-12">
+        {/* What?! why is this even here?! */}
         {console.log(packageBundle)}
         <Link to={`/packages/${packageBundle.id}`}>
           <div className="image">
@@ -30,7 +34,7 @@ export class PackageCard extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({}); // <-- dead
 
 const mapDispatchToProps = {};
 

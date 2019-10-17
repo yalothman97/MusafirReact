@@ -14,11 +14,16 @@ import {
 import { BrowserRouter as Router } from "react-router-dom";
 
 class NewNavbar extends React.Component {
+  /**
+   * Why are you using a constructor?
+   * If you're going to copy paste, make it discriminant.
+   * Change this and make it your own.
+   */
   constructor(props) {
     super(props);
     this.state = {
       collapse: false,
-      isWideEnough: false
+      isWideEnough: false // <-- you're not even using this
     };
     this.onClick = this.onClick.bind(this);
   }

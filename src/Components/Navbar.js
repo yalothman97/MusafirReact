@@ -3,6 +3,9 @@ import { NavLink, Link } from "react-router-dom";
 import Logout from "../Logout";
 import { connect } from "react-redux";
 
+/**
+ * Are you using this?
+ */
 class Navbar extends Component {
   render() {
     return (

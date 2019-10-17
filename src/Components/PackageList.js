@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import PackageCard from "./PackageCard";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar"; // <-- dead
 import NewNavbar from "./NewNavbar";
 
 export class PackageList extends Component {
@@ -12,6 +12,7 @@ export class PackageList extends Component {
     ));
     return (
       <>
+        {/* If you put the navbar here it will ONLY appear on this page */}
         <NewNavbar />
         <div className="authors">
           <h3>Packages</h3>

@@ -36,6 +36,9 @@ class PackageDetail extends Component {
 
     console.log("The Package " + packageObj); // <-- 5
 
+    /**
+     * Copy paste is fine but AT LEAST change the class names before you commit...
+     */
     return (
       <div className="author">
         <div>
