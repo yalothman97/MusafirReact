@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPackage } from "../redux/actions/packages";
+// import Loading from "../../Loading";
+
+import { getPackage } from "../../redux/actions/packages";
 
 // Components
 
@@ -18,7 +20,7 @@ class PackageDetail extends Component {
   }
   render() {
     if (this.props.loading) {
-      return <div>Loading</div>;
+      return <loading />;
     }
     const packageObj = this.props.package;
     console.log(this.props.package);

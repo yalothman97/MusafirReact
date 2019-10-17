@@ -3,12 +3,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Components
-import Sidebar from "./Sidebar";
-import PackageList from "./Components/PackageList";
-import Signup from "./SignupForm";
-import Login from "./LoginForm";
+// import Sidebar from "./Sidebar";
+import PackageList from "./Components/packages/PackageList";
+import Signup from "./Components/authentication/SignupForm";
+import Login from "./Components/authentication/LoginForm";
 import Loading from "./Loading";
-import PackageDetail from "./Components/PackageDetail";
+import PackageDetail from "./Components/packages/PackageDetail";
 
 function App(props, { loading }) {
   return (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
-import Logout from "../Logout";
+import Logout from "./authentication/Logout";
 import { connect } from "react-redux";
 
 class Navbar extends Component {
@@ -8,11 +8,11 @@ class Navbar extends Component {
     return (
       <div>
         <h3>Musafir</h3>
-        <section>
-          <h4 className="menu-item active">
-            <NavLink to="/packages">Packages</NavLink>
-          </h4>
-        </section>
+
+        <h4 className="menu-item active">
+          <NavLink to="/packages">Packages</NavLink>
+        </h4>
+
         <div>
           {!!this.props.user ? (
             <Logout />

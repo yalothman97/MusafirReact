@@ -9,7 +9,7 @@ import Navbar from "./Navbar";
 
 class Home extends Component {
   render() {
-    const authorCards = this.props.filteredAuthors.map(author => (
+    const packageCards = this.props.filteredAuthors.map(author => (
       <AuthorCard key={author.id} author={author} />
     ));
 

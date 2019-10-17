@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import PackageCard from "./PackageCard";
-import Navbar from "./Navbar";
-import NewNavbar from "./NewNavbar";
+import Navbar from "../Navbar";
+// import NewNavbar from "./NewNavbar";
 
 export class PackageList extends Component {
   render() {
@@ -12,8 +12,8 @@ export class PackageList extends Component {
     ));
     return (
       <>
-        <NewNavbar />
-        <div className="authors">
+        <Navbar />
+        <div className="">
           <h3>Packages</h3>
           {/* <SearchBar onChange={this.setQuery} /> */}
           <div className="row">{packageCards}</div>
