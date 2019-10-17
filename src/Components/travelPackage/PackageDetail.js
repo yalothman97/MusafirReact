@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPackage } from "../redux/actions/packages";
+import { getPackage } from "../../redux/actions/packages";
 
 // Components
 
@@ -22,13 +22,13 @@ class PackageDetail extends Component {
     }
     const packageObj = this.props.package;
     console.log(this.props.package);
-    // if (!packageObj) return <Redirect to="/" />;
+    if (!packageObj) return <Redirect to="/Packages" />;
     const packageName = `${packageObj.title} ${packageObj.price}`;
 
     console.log("The Package " + packageObj);
 
     return (
-      <div className="author">
+      <div className="package">
         <div>
           <h3>{packageName}</h3>
           <img

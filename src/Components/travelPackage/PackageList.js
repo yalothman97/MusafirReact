@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import PackageCard from "./PackageCard";
-import Navbar from "./Navbar";
-import NewNavbar from "./NewNavbar";
+import Logout from "../../Authorization/Logout";
+import NewNavbar from "../../Navigation/NewNavbar";
 
 export class PackageList extends Component {
   render() {
@@ -13,18 +13,21 @@ export class PackageList extends Component {
     return (
       <>
         <NewNavbar />
-        <div className="authors">
+        <div className="packages">
           <h3>Packages</h3>
           {/* <SearchBar onChange={this.setQuery} /> */}
           <div className="row">{packageCards}</div>
         </div>
+        {!!this.props.user ? <Logout /> : <></>}
       </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  packages: state.rootPackages.packages
+  packages: state.rootPackages.packages,
+  user: state.user.user,
+  filteredPackages: state.rootPackages.filteredPackages
 });
 
 const mapDispatchToProps = {};

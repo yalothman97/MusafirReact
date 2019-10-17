@@ -3,14 +3,14 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Components
-import Sidebar from "./Sidebar";
-import PackageList from "./Components/PackageList";
-import Signup from "./SignupForm";
-import Login from "./LoginForm";
-import Loading from "./Loading";
-import PackageDetail from "./Components/PackageDetail";
 
-function App(props, { loading }) {
+import PackageList from "./Components/travelPackage/PackageList";
+import Signup from "./Authorization/SignupForm";
+import Login from "./Authorization/LoginForm";
+import Loading from "./Loading";
+import PackageDetail from "./Components/travelPackage/PackageDetail";
+
+function App({ loading, user }) {
   return (
     <div id="app" className="container-fluid">
       <div className="row">
@@ -19,20 +19,18 @@ function App(props, { loading }) {
             <Loading />
           ) : (
             <Switch>
-              <Route path="/packages/:packageID" component={PackageDetail} />
-              <Route path="/packages" component={PackageList} />
-              {!!props.user ? (
-                <>
-                  {" "}
-                  <Redirect to="/packages" />{" "}
-                </>
+              <>
+                <Route path="/package/:packageID" component={PackageDetail} />
+                <Route path="/packages" component={PackageList} />
+              </>
+              {!!user ? (
+                <Redirect to="/packages" />
               ) : (
                 <>
-                  <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
+                  <Route path="/signup" component={Signup} />
                 </>
               )}
-              <Redirect to="/packages" />
             </Switch>
           )}
         </div>

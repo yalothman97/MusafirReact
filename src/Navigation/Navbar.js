@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
-import Logout from "../Logout";
+import Logout from "../Authorization/Logout";
 import { connect } from "react-redux";
 
 class Navbar extends Component {
@@ -10,7 +10,7 @@ class Navbar extends Component {
         <h3>Musafir</h3>
         <section>
           <h4 className="menu-item active">
-            <NavLink to="/packages">Packages</NavLink>
+            <NavLink to="/Packages">Packages</NavLink>
           </h4>
         </section>
         <div>

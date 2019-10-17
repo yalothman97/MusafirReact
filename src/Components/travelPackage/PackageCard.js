@@ -8,7 +8,7 @@ export class PackageCard extends Component {
     return (
       <div className="col-lg-4 col-md-6 col-12">
         {console.log(packageBundle)}
-        <Link to={`/packages/${packageBundle.id}`}>
+        <Link to={`/package/${packageBundle.id}`}>
           <div className="image">
             <img
               className="card-img-top img-fluid roundedCorners"
@@ -20,9 +20,6 @@ export class PackageCard extends Component {
             <h5 className="card-title">
               <span>{packageBundle.title}</span>
             </h5>
-            <small className="card-text">{packageBundle.description}</small>
-            <small className="card-text">{packageBundle.duration}</small>
-            <small className="card-text">{packageBundle.price}</small>
           </div>
         </Link>
       </div>
