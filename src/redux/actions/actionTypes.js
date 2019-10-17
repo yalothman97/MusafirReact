@@ -2,8 +2,9 @@
 export const FETCH_PACKAGES = "FETCH_PACKAGES";
 export const GET_PACKAGE = "GET_PACKAGE";
 
-// Book Actions
-export const SET_BOOKS = "SET_BOOKS";
-export const ADD_BOOK = "ADD_BOOK";
+//Cart Actions
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export const CHECK_OUT = "CHECK_OUT";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";

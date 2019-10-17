@@ -25,20 +25,23 @@ class PackageDetail extends Component {
     const packageObj = this.props.package;
     console.log(this.props.package);
     // if (!packageObj) return <Redirect to="/" />;
-    const packageName = `${packageObj.title} ${packageObj.price}`;
+    // const packageName = `${packageObj.title} ${packageObj.price}`;
 
+    const x = packageObj.duration.split("");
     console.log("The Package " + packageObj);
 
     return (
       <div className="author">
         <div>
-          <h3>{packageName}</h3>
+          <h3>{packageObj.title}</h3>
           <img
             src={packageObj.image}
             className="img-thumbnail img-fluid"
-            alt={packageName}
+            alt={packageObj.title}
           />
-          <h3>{packageObj.duration}</h3>
+          <h3>Duration : {x[0]} Days</h3>
+          <h3>Price : {packageObj.price} </h3>
+          <button>Add to cart </button>
         </div>
       </div>
     );
