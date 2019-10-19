@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
-import PackageCard from "./PackageCard";
 import NewNavbar from "./NewNavbar";
+import Carousel from "./Carousel";
 
 export class Home extends Component {
   render() {
     return (
       <>
         <NewNavbar />
-        <div className="authors"></div>
+        <Carousel />
+        <div></div>
       </>
     );
   }
