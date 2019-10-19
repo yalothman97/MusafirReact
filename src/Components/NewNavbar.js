@@ -7,11 +7,8 @@ import {
   MDBCollapse,
   MDBNavItem,
   MDBNavLink,
-  MDBContainer,
-  MDBView,
-  MDBMask
+  MDBContainer
 } from "mdbreact";
-import { BrowserRouter as Router } from "react-router-dom";
 
 class NewNavbar extends React.Component {
   constructor(props) {

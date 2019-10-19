@@ -3,12 +3,13 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Components
-import Sidebar from "./Sidebar";
+
 import PackageList from "./Components/PackageList";
 import Signup from "./SignupForm";
 import Login from "./LoginForm";
 import Loading from "./Loading";
 import PackageDetail from "./Components/PackageDetail";
+import { Home } from "./Components/Home";
 
 function App(props, { loading }) {
   return (
@@ -21,6 +22,7 @@ function App(props, { loading }) {
             <Switch>
               <Route path="/packages/:packageID" component={PackageDetail} />
               <Route path="/packages" component={PackageList} />
+              <Route path="/" component={Home} />
               {!!props.user ? (
                 <>
                   {" "}

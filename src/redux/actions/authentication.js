@@ -1,6 +1,5 @@
 import { SET_CURRENT_USER } from "./actionTypes";
 import jwt_decode from "jwt-decode";
-import axios from "axios";
 import instance from "./instance";
 
 const setCurrentUser = token => {
