@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #ffffff;
+  background: white;
 }
 
 #app {
@@ -84,8 +84,9 @@ body {
   margin: 20px;
 }
 
-.author img {
+.package img {
   height: 300px;
+  opacity: 1;
 }
 
 td button.btn {

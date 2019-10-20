@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { signup } from "./redux/actions";
+import { signup } from "../../redux/actions";
 import { connect } from "react-redux";
 
 class Signup extends Component {
@@ -38,18 +38,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  value={email}
-                  name="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                />
-              </div>
+
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input

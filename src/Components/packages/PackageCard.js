@@ -6,23 +6,26 @@ export class PackageCard extends Component {
   render() {
     const packageBundle = this.props.packageBundle;
     return (
-      <div className="col-lg-4 col-md-6 col-12">
+      <div
+        key={packageBundle.id}
+        className="cards p-4 text-center"
+        style={{ width: "550px", height: "400px" }}
+      >
         {console.log(packageBundle)}
         <Link to={`/packages/${packageBundle.id}`}>
-          <div className="image">
+          <div className=" card-img ">
             <img
-              className="card-img-top img-fluid roundedCorners"
+              className="p-1  "
               src={packageBundle.image}
               alt={packageBundle.title}
+              style={{ width: "400px", height: "350px" }}
             />
           </div>
-          <div className="card-body">
+
+          <div className=" text-center">
             <h5 className="card-title">
-              <span>{packageBundle.title}</span>
+              <p style={{ color: "green" }}>{packageBundle.title}</p>
             </h5>
-            <small className="card-text">{packageBundle.description}</small>
-            <small className="card-text">{packageBundle.duration}</small>
-            <small className="card-text">{packageBundle.price}</small>
           </div>
         </Link>
       </div>

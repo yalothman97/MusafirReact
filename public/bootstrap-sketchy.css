@@ -231,8 +231,9 @@ figure {
 }
 
 img {
-  vertical-align: middle;
-  border-style: none;
+
+  border-radius: 25px;
+
 }
 
 svg:not(:root) {
@@ -526,9 +527,8 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
+  border-radius: 25px;
   background-color: #fff;
-  border: 2px solid #dee2e6;
-  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
   max-width: 100%;
   height: auto;
 }
@@ -9769,11 +9769,6 @@ select.form-control {
 .popover.popover-right::before,
 .popover.bs-tether-element-attached-left::before {
   left: -13px;
-}
-
-pre {
-  border: 2px solid #333;
-  border-radius: 15px 5px 5px 25px/5px 25px 25px 5px;
 }
 
 .close,

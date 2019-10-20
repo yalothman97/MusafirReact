@@ -1,5 +1,5 @@
 import React from "react";
-import { logout } from "./redux/actions";
+import { logout } from "../../redux/actions";
 import { connect } from "react-redux";
 
 function Logout(props) {

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPackage } from "../redux/actions/packages";
+// import Loading from "../../Loading";
+
+import { getPackage } from "../../redux/actions/packages";
 
 // Components
 
@@ -18,25 +20,36 @@ class PackageDetail extends Component {
   }
   render() {
     if (this.props.loading) {
-      return <div>Loading</div>;
+      return <loading />;
     }
     const packageObj = this.props.package;
     console.log(this.props.package);
     // if (!packageObj) return <Redirect to="/" />;
-    const packageName = `${packageObj.title} ${packageObj.price}`;
+    // const packageName = `${packageObj.title} ${packageObj.price}`;
 
+    const x = packageObj.duration.split("");
     console.log("The Package " + packageObj);
 
     return (
-      <div className="author">
-        <div>
-          <h3>{packageName}</h3>
-          <img
-            src={packageObj.image}
-            className="img-thumbnail img-fluid"
-            alt={packageName}
-          />
-          <h3>{packageObj.duration}</h3>
+      <div
+        className="package text-center"
+        style={{ backgroundImage: packageObj.image }}
+      >
+        <h3 className="mb-4">{packageObj.title}</h3>
+
+        <div className="row text-center">
+          <div className="col-6">
+            <img
+              src={packageObj.image}
+              style={{ width: "400px" }}
+              alt={packageObj.title}
+            />
+          </div>
+          <div className="col-6">
+            <h3 className="mb-4">Duration : {x[0]} Days</h3>
+            <h3 className="mb-4">Price : {packageObj.price} </h3>
+            <button className="mb-4">Add to cart </button>
+          </div>
         </div>
       </div>
     );

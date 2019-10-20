@@ -2,12 +2,12 @@ import { combineReducers } from "redux";
 
 // Reducers
 import packages from "./packages";
-// import booksReducer from "./books";
+import cart from "./cart";
 import authReducer from "./authentication";
 
 const rootReducer = combineReducers({
   rootPackages: packages,
-  // rootBooks: booksReducer,
+  cart: cart,
   user: authReducer
 });
 
