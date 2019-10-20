@@ -30,7 +30,14 @@ class NewNavbar extends React.Component {
     return (
       <div>
         <header>
-          <MDBNavbar color="black" fixed="top" dark expand="md">
+          <MDBNavbar
+            background-color="white"
+            color="black"
+            fixed="top"
+            dark
+            expand="md"
+            className="md-5"
+          >
             <MDBContainer>
               <MDBNavbarBrand href="/">
                 <strong className="navstyle">Musafir</strong>

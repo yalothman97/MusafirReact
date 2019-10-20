@@ -12,7 +12,7 @@ export class PackageList extends Component {
     return (
       <>
         <NewNavbar />
-        <div className="authors">
+        <div className="mt-5">
           <h3>Packages</h3>
           {/* <SearchBar onChange={this.setQuery} /> */}
           <div className="row">{packageCards}</div>

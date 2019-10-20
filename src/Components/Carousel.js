@@ -14,7 +14,11 @@ import puertorico from "../images/puertorico.jpg";
 import ski from "../images/ski.jpg";
 
 const slider = (
-  <AwesomeSlider>
+  <AwesomeSlider
+    className="mt-5 mx-auto"
+    style={{ width: "800px" }}
+    bullets={false}
+  >
     <div data-src={annecy} />
     <div data-src={cruise} />
     <div data-src={lebanon} />
