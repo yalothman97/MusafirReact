@@ -38,18 +38,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  value={email}
-                  name="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                />
-              </div>
+
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input

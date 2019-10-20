@@ -31,17 +31,25 @@ class PackageDetail extends Component {
     console.log("The Package " + packageObj);
 
     return (
-      <div className="author">
-        <div>
-          <h3>{packageObj.title}</h3>
-          <img
-            src={packageObj.image}
-            className="img-thumbnail img-fluid"
-            alt={packageObj.title}
-          />
-          <h3>Duration : {x[0]} Days</h3>
-          <h3>Price : {packageObj.price} </h3>
-          <button>Add to cart </button>
+      <div
+        className="package text-center"
+        style={{ backgroundImage: packageObj.image }}
+      >
+        <h3 className="mb-4">{packageObj.title}</h3>
+
+        <div className="row text-center">
+          <div className="col-6">
+            <img
+              src={packageObj.image}
+              style={{ width: "400px" }}
+              alt={packageObj.title}
+            />
+          </div>
+          <div className="col-6">
+            <h3 className="mb-4">Duration : {x[0]} Days</h3>
+            <h3 className="mb-4">Price : {packageObj.price} </h3>
+            <button className="mb-4">Add to cart </button>
+          </div>
         </div>
       </div>
     );

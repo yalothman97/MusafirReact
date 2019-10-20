@@ -6,24 +6,64 @@ import { connect } from "react-redux";
 class Navbar extends Component {
   render() {
     return (
-      <div>
-        <h3>Musafir</h3>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <>
+          <NavLink
+            className="nav-brand"
+            to="/packages"
+            style={{ paddingRight: "10px" }}
+          >
+            Musafir
+          </NavLink>
 
-        <h4 className="menu-item active">
-          <NavLink to="/packages">Packages</NavLink>
-        </h4>
+          <NavLink
+            className="nav-item"
+            to="/packages"
+            style={{ paddingRight: "10px" }}
+          >
+            Packages
+          </NavLink>
 
-        <div>
-          {!!this.props.user ? (
-            <Logout />
-          ) : (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </>
-          )}
-        </div>
-      </div>
+          <>
+            {!!this.props.user ? (
+              <>
+                <NavLink
+                  className="nav-item"
+                  to="/cart"
+                  style={{ paddingRight: "10px" }}
+                >
+                  cart
+                </NavLink>
+                <NavLink
+                  className="nav-item"
+                  to="/profile"
+                  style={{ paddingRight: "10px" }}
+                >
+                  my profile
+                </NavLink>
+                <Logout className="nav-item" style={{ paddingLeft: "25%" }} />
+              </>
+            ) : (
+              <>
+                <Link
+                  className="nav-item "
+                  style={{ paddingRight: "10px" }}
+                  to="/login"
+                >
+                  Login
+                </Link>
+                <Link
+                  className="nav-item"
+                  style={{ paddingRight: "10px" }}
+                  to="/signup"
+                >
+                  Signup
+                </Link>
+              </>
+            )}
+          </>
+        </>
+      </nav>
     );
   }
 }

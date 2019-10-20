@@ -4,11 +4,11 @@ import axios from "axios";
 import instance from "./instance";
 
 const setCurrentUser = token => {
-  console.log(token);
+  // console.log(token);
   let user = null;
   if (token) {
     localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `jwt ${token}`;
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
     user = jwt_decode(token);
   } else {
     localStorage.removeItem("token");
@@ -38,8 +38,7 @@ export const signup = userData => {
   return async dispatch => {
     try {
       const res = await instance.post("register/", userData);
-      const user = res.data;
-      dispatch(setCurrentUser(user.access));
+      dispatch(login(userData));
     } catch (err) {
       console.error(err);
     }
@@ -49,18 +48,12 @@ export const signup = userData => {
 export const logout = () => setCurrentUser();
 
 export const checkForExpiredToken = () => {
-  // Check for token expiration
   const token = localStorage.getItem("token");
   let user = null;
   if (token) {
     const currentTimeInSeconds = Date.now() / 1000;
-
-    // Decode token and get user info
     user = jwt_decode(token);
-
-    // Check token expiration
     if (user.exp >= currentTimeInSeconds) {
-      // Set user
       return setCurrentUser(token);
     }
   }
