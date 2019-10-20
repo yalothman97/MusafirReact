@@ -7,7 +7,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PROFILE:
-      return { ...state, packages: payload };
+      return { ...state, profile: payload };
 
     default:
       return state;

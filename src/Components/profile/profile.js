@@ -1,18 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import instance from "../../redux/actions/instance";
 
-const Profile = ({ user }) => {
+// import profile from "../../redux/reducers/profile";
+import { getProfile } from "../../redux/actions/profile";
+
+const Profile = ({ profile }) => {
+  getProfile();
   return (
     <>
-      <h1>name:{user.username}</h1>
+      <h1>name:{console.log(profile)}</h1>
     </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    profile: state.profile.profile
   };
 };
-
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = dispatch => {
+  return {
+    getProfile: () => dispatch(getProfile())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);
