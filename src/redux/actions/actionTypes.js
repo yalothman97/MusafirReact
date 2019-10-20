@@ -1,13 +1,20 @@
-// Package Actions
-export const FETCH_PACKAGES = "FETCH_PACKAGES";
-export const GET_PACKAGE = "GET_PACKAGE";
+//packages
+export const GET_TRAVELPACKAGES = "GET_TRAVELPACKAGES";
+export const GET_TRAVELPACKAGEDETAIL = "GET_TRAVELPACKAGEDETAIL";
+export const TRAVELPACKAGES_LOADING = "TRAVELPACKAGES_LOADING";
 
-//Cart Actions
-export const ADD_TO_CART = "ADD_TO_CART";
+export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
-export const CHECK_OUT = "CHECK_OUT";
+export const CHECKOUT = "CHECKOUT";
 
+//user
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
-
-//profile actions
 export const GET_PROFILE = "GET_PROFILE";
+
+//errors
+export const SET_ERRORS = "SET_ERRORS";
+
+//reviewss
+export const GET_USER_REVIEW = "GET_USER_REVIEW";
+export const GET_TRAVELPACKAGE_REVIEWS = "GET_TRAVELPACKAGE_REVIEWS";
+export const POST_REVIEW = "POST_REVIEW";

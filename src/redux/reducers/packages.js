@@ -1,4 +1,7 @@
-import { FETCH_PACKAGES, GET_PACKAGE } from "../actions/actionTypes";
+import {
+  GET_TRAVELPACKAGES,
+  GET_TRAVELPACKAGEDETAIL
+} from "../actions/actionTypes";
 
 const initialState = {
   packages: [],
@@ -8,9 +11,9 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_PACKAGES:
+    case GET_TRAVELPACKAGES:
       return { ...state, packages: payload };
-    case GET_PACKAGE:
+    case GET_TRAVELPACKAGEDETAIL:
       return { ...state, packageItem: payload, loading: false };
     default:
       return state;

@@ -3,16 +3,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Components
-// import Sidebar from "./Sidebar";
+
 import PackageList from "./Components/packages/PackageList";
 import Signup from "./Components/authentication/SignupForm";
 import Login from "./Components/authentication/LoginForm";
 import Loading from "./Loading";
 import PackageDetail from "./Components/packages/PackageDetail";
 import Navbar from "./Components/Navbar";
-import { CartList } from "./Components/packages/CartList";
+// import { CartList } from "./Components/packages/CartList";
 import profile from "./Components/profile/profile";
-// import { Profile } from "./Components/profile";
+import CartList from "./Components/packages/CartList";
 
 function App(props, { loading }) {
   return (
@@ -27,8 +27,9 @@ function App(props, { loading }) {
               <Switch>
                 <Route path="/packages/:packageID" component={PackageDetail} />
                 <Route path="/packages" component={PackageList} />
-                <Route path="/cart" component={CartList} />
+                {/* <Route path="/cart" component={CartList} /> */}
                 <Route path="/profile" component={profile} />
+                <Route path="/cart" component={CartList} />
 
                 {!!props.user ? (
                   <>
@@ -52,7 +53,7 @@ function App(props, { loading }) {
 
 const mapStateToProps = state => ({
   loading: state.rootPackages.loading,
-  user: state.user.user
+  user: state.userReducer.user
 });
 
 export default connect(mapStateToProps)(App);

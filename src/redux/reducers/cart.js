@@ -1,22 +1,29 @@
-import { ADD_TO_CART, REMOVE_ITEM, CHECK_OUT } from "../actions/actionTypes";
-
+import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-  cart: []
+  items: []
 };
 
-export default (state = initialState, { type, payload }) => {
-  switch (type) {
-    case ADD_TO_CART:
-      return { ...state, cart: state.cart.concat(payload) };
-    case REMOVE_ITEM:
-      let filteredItems = state.cart.filter(item => item !== payload);
+const cartReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.ADD_ITEM:
+      const newitem = action.payload;
       return {
-        ...state,
-        cart: filteredItems
+        items: state.items.concat([newitem])
       };
-    case CHECK_OUT:
-      return { ...state, cart: [] };
+
+    case actionTypes.REMOVE_ITEM:
+      return {
+        items: state.items.filter(item => {
+          return item !== action.payload;
+        })
+      };
+    case actionTypes.CHECKOUT:
+      return {
+        items: []
+      };
     default:
       return state;
   }
 };
+
+export default cartReducer;

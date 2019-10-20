@@ -8,8 +8,8 @@ import profileReducer from "./profile";
 
 const rootReducer = combineReducers({
   rootPackages: packages,
-  cart: cart,
-  user: authReducer,
+  cartReducer: cart,
+  userReducer: authReducer,
   profile: profileReducer
 });
 

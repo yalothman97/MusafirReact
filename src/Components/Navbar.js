@@ -69,7 +69,7 @@ class Navbar extends Component {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.userReducer.user
   };
 };
 export default connect(mapStateToProps)(Navbar);

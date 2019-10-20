@@ -1,38 +1,35 @@
-import axios from "axios";
-import * as actionTypes from "./types";
+import * as actionTypes from "./actionTypes";
 
-// export const getOrders = () => {
-//   return async dispatch => {
-//     dispatch(setCoffeeShopsLoading());
-//     try {
-//       const res = await axios.get("http://178.128.114.232/api/?format=json");
-//       const orders = res.data;
-//       dispatch({
-//         type: GET_ORDERS,
-//         payload: orders
-//       });
-//     } catch (err) {
-//       console.error("Error while fetching shops", err);
-//     }
-//   };
-// };
+import instance from "./instance";
 
-export const setLoading = () => ({
-  type: ORDERS_LOADING
+export const addItemToCart = (packageItem, quantity) => ({
+  type: actionTypes.ADD_ITEM,
+  payload: { quantity: quantity, id: packageItem.id }
 });
-
-export const addItemToCart = item => {
-  return {
-    type: ADD_ITEM,
-    payload: item
-  };
-};
 
 export const removeItemFromCart = item => ({
   type: actionTypes.REMOVE_ITEM,
   payload: item
 });
 
-export const checkoutCart = () => ({
-  type: actionTypes.CHECKOUT
-});
+export const checkoutCart = Item => {
+  return async dispatch => {
+    try {
+      console.log(Item);
+      const res = await instance.post("packages/book/", {
+        quantity: Item.quantity,
+        id: Item.id
+      });
+
+      console.log(res.data);
+
+      const reservation = res.data;
+      dispatch({
+        type: actionTypes.CHECKOUT,
+        payload: reservation
+      });
+    } catch (err) {
+      console.error("Error while trying to checkout", err);
+    }
+  };
+};
