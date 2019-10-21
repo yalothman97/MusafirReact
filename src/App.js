@@ -52,7 +52,7 @@ function App(props, { loading }) {
 }
 
 const mapStateToProps = state => ({
-  loading: state.rootPackages.loading,
+  loading: state.travelPackageReducer.loading,
   user: state.userReducer.user
 });
 

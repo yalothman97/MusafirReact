@@ -34,7 +34,6 @@ export class PackageList extends Component {
       <>
         <div className="package text-center">
           <h1 className="">Featured Packages</h1>
-          {/* <SearchBar onChange={this.setQuery} /> */}
         </div>
 
         <MDBContainer className="col-9 text-center">
@@ -43,7 +42,7 @@ export class PackageList extends Component {
             length={3}
             showControls={true}
             showIndicators={false}
-            // className="z-depth-1"
+            className="z-depth-1"
             slide
           >
             <MDBCarouselInner>{packageFeatured}</MDBCarouselInner>
@@ -61,7 +60,7 @@ export class PackageList extends Component {
 }
 
 const mapStateToProps = state => ({
-  packages: state.rootPackages.packages
+  packages: state.travelPackageReducer.packages
 });
 
 const mapDispatchToProps = {};

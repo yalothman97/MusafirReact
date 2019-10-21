@@ -6,11 +6,7 @@ import CartItem from "./CartItem";
 class CartList extends Component {
   checkout = () => {
     if (this.props.user) {
-      let cartItemsArray = [];
-      this.props.items.map(item => {
-        cartItemsArray.push(item);
-      });
-      this.props.checkoutCart(cartItemsArray);
+      this.props.checkoutCart(this.props.items);
       alert("Thank you");
     } else {
       // this.props.navigation.navigate("Login");
@@ -41,7 +37,6 @@ class CartList extends Component {
       <div>
         {cartItems}
         {checkoutButton()}
-        {/* <FlashMessage position="top" /> */}
       </div>
     );
   }

@@ -7,7 +7,7 @@ import authReducer from "./authentication";
 import profileReducer from "./profile";
 
 const rootReducer = combineReducers({
-  rootPackages: packages,
+  travelPackageReducer: packages,
   cartReducer: cart,
   userReducer: authReducer,
   profile: profileReducer

@@ -12,7 +12,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_TRAVELPACKAGES:
-      return { ...state, packages: payload };
+      return { ...state, packages: payload, loading: false };
     case GET_TRAVELPACKAGEDETAIL:
       return { ...state, packageItem: payload, loading: false };
     default:
