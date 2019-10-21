@@ -14,12 +14,12 @@ class CartItem extends Component {
           <div>{item.quantity} person(s)</div>
           <img src={item.image} />
         </div>
-
         <div>
           <button onClick={() => this.props.removeItemFromCart(item)}>
             trash
           </button>
         </div>
+        ghjhkl;
       </div>
     );
   }

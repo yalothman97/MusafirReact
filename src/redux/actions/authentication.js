@@ -1,4 +1,3 @@
-import axios from "axios";
 import jwt_decode from "jwt-decode";
 import instance from "./instance";
 
@@ -7,10 +6,10 @@ import * as actionTypes from "./actionTypes";
 const setAuthToken = token => {
   if (token) {
     localStorage.setItem("token", token);
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
     localStorage.removeItem("token");
-    delete axios.defaults.headers.common.Authorization;
+    delete instance.defaults.headers.common.Authorization;
   }
 };
 

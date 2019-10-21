@@ -12,14 +12,11 @@ export const removeItemFromCart = item => ({
   payload: item
 });
 
-export const checkoutCart = Item => {
+export const checkoutCart = Items => {
   return async dispatch => {
     try {
-      console.log(Item);
-      const res = await instance.post("packages/book/", {
-        quantity: Item.quantity,
-        id: Item.id
-      });
+      console.log(Items);
+      const res = await instance.post("packages/book/", Items);
 
       console.log(res.data);
 

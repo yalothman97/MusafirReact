@@ -9,26 +9,17 @@ class PackageDetail extends Component {
   state = {
     quantity: 0
   };
-
+  componentDidMount() {
+    console.log(this.props.match.params.packageID);
+    this.props.getTravelPackageDetail(this.props.match.params.packageID);
+  }
   addItemHandler = (packageItem, quantity) => {
     this.props.addItem(packageItem, quantity);
   };
-  travelPackage = {
-    id: 1,
-    title: "1 Week in Barcelona",
-    image:
-      "https://www.fodors.com/wp-content/uploads/2018/07/shutterstock_552368572.jpg",
-    price: 399,
-    ratings: { value: 3.7, attractions: 4.2, shopping: 3.3 },
-    noOfRatings: 24,
-    featured: true,
-    description:
-      "I dont know what to write here, but i want to make it long enough to see how it will look on the page and i was advised not to use dummy data and I beleive this is not dummy data isnt it? To find more slack me"
-  };
+  travelPackage = this.props.packageItem;
 
   render() {
-    // if (false) return <Loading />; //if(loading)
-
+    console.log("THE TRAVELPACKAGE", this.props.packageItem);
     let negbutton = () => {
       if (this.state.quantity) {
         return (
@@ -45,7 +36,7 @@ class PackageDetail extends Component {
     return (
       <div>
         <img
-          src={this.travelPackage.image}
+          src={""}
           style={{
             height: 300,
             justifyContent: "center",
@@ -55,11 +46,11 @@ class PackageDetail extends Component {
         <div>
           <div>
             <div>
-              {this.travelPackage.description + "\n"}
-              <div>{this.travelPackage.price} KD</div>
+              {this.props.packageItem.title}
+              <div>{this.props.packageItem.price} KD</div>
             </div>
 
-            <img src={this.travelPackage.image} />
+            <img src={this.props.packageItem.image} />
           </div>
           <div style={{ borderBottomWidth: 0, flexDirection: "row" }}>
             <div style={{ marginRight: 100 }}>Number of travelers:</div>
@@ -76,7 +67,7 @@ class PackageDetail extends Component {
           </div>
           <button
             onClick={() =>
-              this.addItemHandler(this.travelPackage, this.state.quantity)
+              this.addItemHandler(this.props.packageItem, this.state.quantity)
             }
           >
             <div>Add</div>
@@ -87,7 +78,8 @@ class PackageDetail extends Component {
   }
 }
 const mapStateToProps = state => ({
-  travelPackageReducer: state.travelPackageReducer
+  // travelPackageReducer: state.travelPackageReducer
+  packageItem: state.travelPackageReducer.packageItem
 });
 
 const mapDispatchToProps = dispatch => {

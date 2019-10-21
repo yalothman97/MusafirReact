@@ -19,9 +19,9 @@ export const getTravelPackages = () => {
   };
 };
 
-export const getTravelPackageDetail = travelPackage => {
-  const travelPackageID = travelPackage.id;
-  console.log("HEREEEEEEE", travelPackage.id);
+export const getTravelPackageDetail = travelPackageID => {
+  // const travelPackageID = travelPackage.id;
+  // console.log("HEREEEEEEE", travelPackage.id);
   return async dispatch => {
     dispatch(setTravelPackagesLoading());
     try {
