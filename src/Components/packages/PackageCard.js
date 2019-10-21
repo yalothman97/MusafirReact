@@ -1,31 +1,26 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 export class PackageCard extends Component {
   render() {
     const packageBundle = this.props.packageBundle;
     return (
-      <div
-        key={packageBundle.id}
-        className="cards p-4 text-center"
-        style={{ width: "550px", height: "400px" }}
-      >
-        {console.log(packageBundle)}
+      <div className="col-lg-4 col-md-6 col-12">
         <Link to={`/packages/${packageBundle.id}`}>
-          <div className=" card-img ">
+          <div className="image">
             <img
-              className="p-1  "
+              className=" img-fluid roundcorners"
               src={packageBundle.image}
               alt={packageBundle.title}
-              style={{ width: "400px", height: "350px" }}
             />
           </div>
-
-          <div className=" text-center">
+          <div className="card-body">
             <h5 className="card-title">
-              <p style={{ color: "green" }}>{packageBundle.title}</p>
+              <span>{packageBundle.title}</span>
             </h5>
+            <small className="card-text">{packageBundle.description}</small>
+            <small className="card-text">{packageBundle.duration}</small>
+            <small className="card-text">{packageBundle.price}</small>
           </div>
         </Link>
       </div>
@@ -33,11 +28,4 @@ export class PackageCard extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PackageCard);
+export default PackageCard;

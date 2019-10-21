@@ -32,7 +32,7 @@ export const checkForExpiredToken = () => {
   };
 };
 
-export const login = userData => {
+export const login = (userData, history) => {
   return async dispatch => {
     try {
       console.log("Calling login function");
@@ -43,6 +43,7 @@ export const login = userData => {
       setAuthToken(user.access);
 
       await dispatch(setCurrentUser(decodedUser));
+      history.push("/");
     } catch (error) {
       dispatch({
         type: actionTypes.SET_ERRORS,
@@ -52,13 +53,13 @@ export const login = userData => {
   };
 };
 
-export const signup = userData => {
+export const signup = (userData, history) => {
   return async dispatch => {
     try {
       console.log("Calling signup function");
       let response = await instance.post("/register/", userData);
       let user = response.data;
-      dispatch(login(userData));
+      dispatch(login(userData, history));
     } catch (error) {
       dispatch({
         type: actionTypes.SET_ERRORS,
