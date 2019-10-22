@@ -1,11 +1,11 @@
 import { GET_PROFILE } from "./actionTypes";
 import instance from "./instance";
 
-export const getProfile = () => {
+export const getProfile = user => {
   return async dispatch => {
     try {
-      const res = await instance.get(`/profile/`);
-      //   const packageItem = res.data;
+      const res = await instance.get(`/profile/`, user);
+      console.log("L'Profile", res.data);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
