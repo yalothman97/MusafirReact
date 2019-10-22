@@ -10,7 +10,6 @@ class PackageDetail extends Component {
     quantity: 0
   };
   componentDidMount() {
-    console.log(this.props.match.params.packageID);
     this.props.getTravelPackageDetail(this.props.match.params.packageID);
   }
   addItemHandler = (packageItem, quantity) => {
@@ -37,16 +36,20 @@ class PackageDetail extends Component {
         <div className="mt-5">
           <h1 className="text-center mt-5">Book</h1>
         </div>
-        <div className="row">
-          <div className="col-6">
-            <div>
-              <div>
-                {this.props.packageItem.title}
-                <div>{this.props.packageItem.price} KD</div>
-              </div>
 
-              <img src={this.props.packageItem.image} />
-            </div>
+        <div className="row mb-5">
+          <div className="col-6">
+            <img
+              className="img-fluid roundcorners"
+              src={this.props.packageItem.image}
+            />
+            <p>{this.props.packageItem.description}</p>
+          </div>
+
+          <div className="col-6">
+            <text className="title">{this.props.packageItem.title}</text>
+            <p>{this.props.packageItem.price} KWD</p>
+
             <div style={{ borderBottomWidth: 0, flexDirection: "row" }}>
               <div style={{ marginRight: 100 }}>Number of travelers:</div>
               <button
@@ -60,12 +63,15 @@ class PackageDetail extends Component {
               <div>{this.state.quantity}</div>
               {negbutton()}
             </div>
+
             <button
+              type="button"
+              class="btn btn-light"
               onClick={() =>
                 this.addItemHandler(this.props.packageItem, this.state.quantity)
               }
             >
-              <div>Add</div>
+              Add
             </button>
           </div>
         </div>
