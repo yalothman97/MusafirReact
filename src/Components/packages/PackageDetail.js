@@ -19,7 +19,6 @@ class PackageDetail extends Component {
   travelPackage = this.props.packageItem;
 
   render() {
-    console.log("THE TRAVELPACKAGE", this.props.packageItem);
     let negbutton = () => {
       if (this.state.quantity) {
         return (
@@ -34,44 +33,41 @@ class PackageDetail extends Component {
     };
 
     return (
-      <div>
-        <img
-          src={""}
-          style={{
-            height: 300,
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        />
-        <div>
-          <div>
+      <div className="container">
+        <div className="mt-5">
+          <h1 className="text-center mt-5">Book</h1>
+        </div>
+        <div className="row">
+          <div className="col-6">
             <div>
-              {this.props.packageItem.title}
-              <div>{this.props.packageItem.price} KD</div>
-            </div>
+              <div>
+                {this.props.packageItem.title}
+                <div>{this.props.packageItem.price} KD</div>
+              </div>
 
-            <img src={this.props.packageItem.image} />
-          </div>
-          <div style={{ borderBottomWidth: 0, flexDirection: "row" }}>
-            <div style={{ marginRight: 100 }}>Number of travelers:</div>
+              <img src={this.props.packageItem.image} />
+            </div>
+            <div style={{ borderBottomWidth: 0, flexDirection: "row" }}>
+              <div style={{ marginRight: 100 }}>Number of travelers:</div>
+              <button
+                style={{ margin: 3, width: 40 }}
+                onClick={() =>
+                  this.setState({ quantity: this.state.quantity + 1 })
+                }
+              >
+                <div>+</div>
+              </button>
+              <div>{this.state.quantity}</div>
+              {negbutton()}
+            </div>
             <button
-              style={{ margin: 3, width: 40 }}
               onClick={() =>
-                this.setState({ quantity: this.state.quantity + 1 })
+                this.addItemHandler(this.props.packageItem, this.state.quantity)
               }
             >
-              <div>+</div>
+              <div>Add</div>
             </button>
-            <div>{this.state.quantity}</div>
-            {negbutton()}
           </div>
-          <button
-            onClick={() =>
-              this.addItemHandler(this.props.packageItem, this.state.quantity)
-            }
-          >
-            <div>Add</div>
-          </button>
         </div>
       </div>
     );
