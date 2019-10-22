@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   travelPackageReducer: packages,
   cartReducer: cart,
   userReducer: authReducer,
-  profile: profileReducer
+  profileReducer: profileReducer
 });
 
 export default rootReducer;
