@@ -10,15 +10,16 @@ class Navbar extends Component {
     return (
       <div className="container mt-5">
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
-          <a className="navbar-brand" href="/">
+          <Link to="/">
             <h5>Musafir</h5>
-          </a>
+          </Link>
+
           <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
+            data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -39,12 +40,48 @@ class Navbar extends Component {
               </li>
               {this.props.user ? (
                 <>
-                  <li className="ml-5">
-                    {/* Will Redirect to profile */}
-                    <h6>{this.props.user.username}</h6>
-                  </li>
-                  <li onClick={() => this.props.logout()} className="ml-5">
-                    <h6>Logout</h6>
+                  <li className="nav-item dropdown">
+                    <h6
+                      className=" ml-5 dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {this.props.user.username}
+                    </h6>
+
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <li className="ml-5 mt-2">
+                        <Link to="/profile">
+                          <h6>Profile</h6>
+                        </Link>
+                      </li>
+
+                      <div className="dropdown-divider"></div>
+
+                      <li className="ml-5 mt-2">
+                        <Link to="/cart">
+                          <h6>Cart</h6>
+                        </Link>
+                      </li>
+
+                      <div className="dropdown-divider"></div>
+
+                      <li
+                        onClick={() => this.props.logout()}
+                        className="ml-5 mt-2"
+                      >
+                        <Link>
+                          <h6>Logout</h6>
+                        </Link>
+                      </li>
+                    </div>
                   </li>
                 </>
               ) : (
