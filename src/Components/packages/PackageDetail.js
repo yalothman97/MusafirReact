@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { addItemToCart } from "../../redux/actions";
 import { getTravelPackageDetail } from "../../redux/actions/";
 import Loading from "../../Loading";
+//Icons
+import { PlusCircle, MinusCircle } from "react-feather";
 
 class PackageDetail extends Component {
   state = {
@@ -21,12 +23,11 @@ class PackageDetail extends Component {
     let negbutton = () => {
       if (this.state.quantity) {
         return (
-          <button
-            style={{ margin: 3, width: 40 }}
+          <MinusCircle
             onClick={() => this.setState({ quantity: this.state.quantity - 1 })}
-          >
-            <div>-</div>
-          </button>
+            color="#CDB2AB"
+            size="20"
+          />
         );
       }
     };
@@ -34,7 +35,7 @@ class PackageDetail extends Component {
     return (
       <div className="container">
         <div className="mt-5">
-          <h1 className="text-center mt-5">Book</h1>
+          <h1 className="text-center mt-5 mb-5">Book</h1>
         </div>
 
         <div className="row mb-5">
@@ -43,27 +44,32 @@ class PackageDetail extends Component {
               className="img-fluid roundcorners"
               src={this.props.packageItem.image}
             />
-            <p>{this.props.packageItem.description}</p>
+            <p className="mt-3">{this.props.packageItem.description}</p>
           </div>
 
           <div className="col-6">
             <text className="title">{this.props.packageItem.title}</text>
             <p>{this.props.packageItem.price} KWD</p>
 
-            <div style={{ borderBottomWidth: 0, flexDirection: "row" }}>
-              <div style={{ marginRight: 100 }}>Number of travelers:</div>
-              <button
-                style={{ margin: 3, width: 40 }}
-                onClick={() =>
-                  this.setState({ quantity: this.state.quantity + 1 })
-                }
-              >
-                <div>+</div>
-              </button>
-              <div>{this.state.quantity}</div>
-              {negbutton()}
+            <div
+              className="row"
+              style={{ borderBottomWidth: 0, flexDirection: "row" }}
+            >
+              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <p style={{ marginRight: 100 }}>Number of travelers:</p>
+              </div>
+              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                {negbutton()}
+                {this.state.quantity}
+                <PlusCircle
+                  onClick={() =>
+                    this.setState({ quantity: this.state.quantity + 1 })
+                  }
+                  color="#CDB2AB"
+                  size="20"
+                />
+              </div>
             </div>
-
             <button
               type="button"
               class="btn btn-light"

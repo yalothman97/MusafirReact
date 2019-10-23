@@ -67,13 +67,26 @@ h6 {
 
 p {
   font-family: Sofia Pro;
-  font-size: 40px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #0b4f6c;
+}
+
+p.info {
+  font-family: Sofia Pro;
+  font-size: 20px;
   font-weight: 400;
   color: #0b4f6c;
 }
 
 .roundcorners {
   border-radius: 25px;
+}
+
+.circlize {
+  border-radius: 300px;
+  height: 200;
+  object-fit: cover;
 }
 
 .pinkicon {

@@ -2,20 +2,23 @@ import jwt_decode from "jwt-decode";
 import instance from "./instance";
 
 import * as actionTypes from "./actionTypes";
-
+import { getProfile } from "./profile";
 const setAuthToken = token => {
-  if (token) {
-    localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  } else {
-    localStorage.removeItem("token");
-    delete instance.defaults.headers.common.Authorization;
-  }
+  return dispatch => {
+    if (token) {
+      localStorage.setItem("token", token);
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+      dispatch(getProfile());
+    } else {
+      localStorage.removeItem("token");
+      delete instance.defaults.headers.common.Authorization;
+    }
+  };
 };
 
 export const checkForExpiredToken = () => {
   return async dispatch => {
-    const token = await localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (token) {
       const currentTime = Date.now() / 1000;
@@ -23,7 +26,7 @@ export const checkForExpiredToken = () => {
       const user = jwt_decode(token);
 
       if (user.exp >= currentTime) {
-        setAuthToken(token);
+        dispatch(setAuthToken(token));
         dispatch(setCurrentUser(user));
       } else {
         dispatch(logout());
@@ -35,12 +38,11 @@ export const checkForExpiredToken = () => {
 export const login = (userData, history) => {
   return async dispatch => {
     try {
-      console.log("Calling login function");
       const response = await instance.post("login/", userData);
       let user = response.data;
 
       let decodedUser = jwt_decode(user.access);
-      setAuthToken(user.access);
+      dispatch(setAuthToken(user.access));
 
       await dispatch(setCurrentUser(decodedUser));
       history.push("/");
@@ -56,7 +58,6 @@ export const login = (userData, history) => {
 export const signup = (userData, history) => {
   return async dispatch => {
     try {
-      console.log("Calling signup function");
       let response = await instance.post("/register/", userData);
       let user = response.data;
       dispatch(login(userData, history));
@@ -71,7 +72,6 @@ export const signup = (userData, history) => {
 
 export const logout = () => {
   setAuthToken();
-  console.log("CALLED LOGOUT");
   return setCurrentUser();
 };
 

@@ -15,11 +15,7 @@ export const removeItemFromCart = item => ({
 export const checkoutCart = Items => {
   return async dispatch => {
     try {
-      console.log(Items);
       const res = await instance.post("packages/book/", Items);
-
-      console.log(res.data);
-
       const reservation = res.data;
       dispatch({
         type: actionTypes.CHECKOUT,

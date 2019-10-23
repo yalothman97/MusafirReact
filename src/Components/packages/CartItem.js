@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 class CartItem extends Component {
   render() {
     const item = this.props;
-    console.log(item);
     return (
       <div>
         <div>

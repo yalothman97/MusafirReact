@@ -22,7 +22,14 @@ class CartList extends Component {
           </button>
         );
       } else {
-        return <h1> There is no items in your cart </h1>;
+        return (
+          <div className="mt-5 container">
+            <h1 className="align-text text-center mb-5ç">
+              {" "}
+              Your cart is empty{" "}
+            </h1>
+          </div>
+        );
       }
     };
     let items = this.props.items;
@@ -34,9 +41,11 @@ class CartList extends Component {
     }
 
     return (
-      <div>
-        {cartItems}
-        {checkoutButton()}
+      <div className="container">
+        <div className="jumbotron bg-transparent border">
+          {cartItems}
+          {checkoutButton()}
+        </div>
       </div>
     );
   }
