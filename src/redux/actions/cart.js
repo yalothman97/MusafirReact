@@ -12,7 +12,7 @@ export const removeItemFromCart = item => ({
   payload: item
 });
 
-export const checkoutCart = Items => {
+export const checkoutCart = (Items, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("packages/book/", Items);
@@ -20,6 +20,22 @@ export const checkoutCart = Items => {
       dispatch({
         type: actionTypes.CHECKOUT,
         payload: reservation
+      });
+      history.replace("/thankyou");
+    } catch (err) {
+      console.error("Error while trying to checkout", err);
+    }
+  };
+};
+
+export const previousBookings = () => {
+  return async dispatch => {
+    try {
+      const res = await instance.get("bookings/");
+      const bookings = res.data;
+      dispatch({
+        type: actionTypes.BOOKINGS,
+        payload: bookings
       });
     } catch (err) {
       console.error("Error while trying to checkout", err);

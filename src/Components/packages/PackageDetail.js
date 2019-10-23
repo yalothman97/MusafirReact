@@ -4,17 +4,21 @@ import { connect } from "react-redux";
 import { addItemToCart } from "../../redux/actions";
 import { getTravelPackageDetail } from "../../redux/actions/";
 import Loading from "../../Loading";
+
 //Icons
 import { PlusCircle, MinusCircle } from "react-feather";
 
 class PackageDetail extends Component {
   state = {
-    quantity: 0
+    quantity: 1,
+    added: false
   };
   componentDidMount() {
     this.props.getTravelPackageDetail(this.props.match.params.packageID);
   }
   addItemHandler = (packageItem, quantity) => {
+    this.setState({ added: true });
+    setTimeout(() => this.setState({ added: false }), 3000);
     this.props.addItem(packageItem, quantity);
   };
   travelPackage = this.props.packageItem;
@@ -24,9 +28,13 @@ class PackageDetail extends Component {
       if (this.state.quantity) {
         return (
           <MinusCircle
-            onClick={() => this.setState({ quantity: this.state.quantity - 1 })}
+            onClick={() => {
+              if (this.state.quantity !== 1) {
+                this.setState({ quantity: this.state.quantity - 1 });
+              }
+            }}
             color="#CDB2AB"
-            size="20"
+            size="35"
           />
         );
       }
@@ -37,7 +45,11 @@ class PackageDetail extends Component {
         <div className="mt-5">
           <h1 className="text-center mt-5 mb-5">Book</h1>
         </div>
-
+        {this.state.added && (
+          <div className="alert alert-success" role="alert">
+            Added to Cart
+          </div>
+        )}
         <div className="row mb-5">
           <div className="col-6">
             <img
@@ -66,7 +78,7 @@ class PackageDetail extends Component {
                     this.setState({ quantity: this.state.quantity + 1 })
                   }
                   color="#CDB2AB"
-                  size="20"
+                  size="35"
                 />
               </div>
             </div>

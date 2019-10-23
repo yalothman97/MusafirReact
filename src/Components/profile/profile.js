@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 // import profile from "../../redux/reducers/profile";
 import { getProfile } from "../../redux/actions/";
@@ -54,11 +53,7 @@ class Profile extends Component {
             </div>
 
             <div className="col-12 text-center align-center mx-auto">
-              <h5>Upcoming Booking</h5>
-              <p></p>
-            </div>
-            <div className="col-12 text-center align-center mx-auto">
-              <h5>Previous Booking</h5>
+              <Link to="/bookings">My Bookings</Link>
             </div>
           </div>
         </div>

@@ -3,12 +3,14 @@ import instance from "./instance";
 
 import * as actionTypes from "./actionTypes";
 import { getProfile } from "./profile";
+import { previousBookings } from "./cart";
 const setAuthToken = token => {
   return dispatch => {
     if (token) {
       localStorage.setItem("token", token);
       instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       dispatch(getProfile());
+      dispatch(previousBookings());
     } else {
       localStorage.removeItem("token");
       delete instance.defaults.headers.common.Authorization;

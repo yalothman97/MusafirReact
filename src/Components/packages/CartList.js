@@ -6,19 +6,18 @@ import CartItem from "./CartItem";
 class CartList extends Component {
   checkout = () => {
     if (this.props.user) {
-      this.props.checkoutCart(this.props.items);
+      this.props.checkoutCart(this.props.items, this.props.history);
       alert("Thank you");
     } else {
-      // this.props.navigation.navigate("Login");
-      //redirect tologin
+      this.props.haitory.push("/login");
     }
   };
   render() {
     let checkoutButton = () => {
       if (this.props.items.length) {
         return (
-          <button onClick={this.checkout}>
-            <h1>Checkout</h1>
+          <button className="btn btn-light mt-5" onClick={this.checkout}>
+            <h3>Checkout</h3>
           </button>
         );
       } else {
@@ -35,15 +34,23 @@ class CartList extends Component {
     let items = this.props.items;
     let cartItems;
     if (items) {
-      cartItems = items.map((item, index) => (
-        <CartItem item={item} key={index} />
-      ));
+      cartItems = items
+        .map(item => {
+          let packageBundle = this.props.packages.find(
+            packageItem => packageItem.id === item.id
+          );
+          return { ...packageBundle, quantity: item.quantity };
+        })
+        .map((item, index) => <CartItem item={item} key={index} />);
     }
 
     return (
       <div className="container">
         <div className="jumbotron bg-transparent border">
-          {cartItems}
+          <table>
+            <thead></thead>
+            {cartItems}
+          </table>
           {checkoutButton()}
         </div>
       </div>
@@ -53,12 +60,13 @@ class CartList extends Component {
 
 const mapStateToProps = state => ({
   items: state.cartReducer.items,
+  packages: state.travelPackageReducer.packages,
   user: state.userReducer.user
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkoutCart: item => dispatch(checkoutCart(item))
+    checkoutCart: (item, history) => dispatch(checkoutCart(item, history))
   };
 };
 

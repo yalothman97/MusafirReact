@@ -6,6 +6,7 @@ export const TRAVELPACKAGES_LOADING = "TRAVELPACKAGES_LOADING";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const CHECKOUT = "CHECKOUT";
+export const BOOKINGS = "BOOKINGS";
 
 //user
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
