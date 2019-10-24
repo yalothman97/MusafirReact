@@ -11,7 +11,7 @@ class Navbar extends Component {
       <div className="container mt-5">
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
           <Link to="/">
-            <h5>Musafir</h5>
+            <h5>FARAWAY</h5>
           </Link>
 
           <button

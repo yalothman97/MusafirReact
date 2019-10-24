@@ -46,7 +46,7 @@ h5 {
   font-family: Sofia Pro;
   font-size: 40px;
   font-weight: 200;
-  color: #cdb2ab;
+  color: #916959;
 }
 
 /* Nav font style */
@@ -55,14 +55,14 @@ h6 {
   font-family: Sofia Pro;
   font-size: 20px;
   font-weight: 100;
-  color: #cdb2ab;
+  color: #916959;
 }
 
 .title {
   font-family: Sofia Pro;
   font-size: 70px;
   font-weight: 400;
-  color: #cdb2ab;
+  color: #916959;
 }
 
 p {
@@ -90,5 +90,5 @@ p.info {
 }
 
 .pinkicon {
-  fill: #cdb2ab;
+  fill: #916959;
 }
