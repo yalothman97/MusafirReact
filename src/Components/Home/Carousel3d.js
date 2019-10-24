@@ -30,6 +30,7 @@ class Carousel3d extends Component {
               src={packageBundle.image}
               alt={packageBundle.title}
               className="roundcorners"
+              style={{ width: "400px", height: "200px" }}
             />
           </Link>
         )
