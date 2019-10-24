@@ -28,17 +28,13 @@ class Navbar extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
-              <li>
-                <Link to="/">
-                  <h6>Home</h6>
-                </Link>
-              </li>
+              <li></li>
               <li className="ml-5">
                 <Link to="/packages">
                   <h6>Packages</h6>
                 </Link>
               </li>
-              <li className="ml-5 mt-2">
+              <li className="ml-5">
                 <Link to="/cart">
                   <h6>Cart</h6>
                 </Link>

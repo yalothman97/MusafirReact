@@ -1,23 +1,33 @@
 import React, { Component } from "react";
 import { removeItemFromCart } from "../../redux/actions";
 import { connect } from "react-redux";
-
+import { Trash2 } from "react-feather";
 class CartItem extends Component {
   render() {
     const item = this.props.item;
     console.log(item);
     return (
-      <div>
-        <div>
-          <h2> {item.title} </h2>
-          <h4>{item.quantity} person(s)</h4>
-        </div>
-        <div>
-          <button onClick={() => this.props.removeItemFromCart(item)}>
-            trash
+      <tr className="">
+        <td className="col-3" style={{ width: "10%" }}>
+          <img
+            className="roundcorners"
+            style={{ height: "100px" }}
+            src={item.image}
+          />
+        </td>
+        <td className="col-3" style={{ width: "10%" }}>
+          {item.title}
+        </td>
+        <td className="col-3">{item.quantity} person(s)</td>
+        <td className="col-3">
+          <button
+            className="btn btn-light"
+            onClick={() => this.props.removeItemFromCart(item)}
+          >
+            <Trash2 color="#D36060" size="20" />
           </button>
-        </div>
-      </div>
+        </td>
+      </tr>
     );
   }
 }
