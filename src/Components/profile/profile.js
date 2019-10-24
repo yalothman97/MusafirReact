@@ -1,37 +1,63 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
-import instance from "../../redux/actions/instance";
+import { Redirect, Link } from "react-router-dom";
 
 // import profile from "../../redux/reducers/profile";
 import { getProfile } from "../../redux/actions/";
+import Loading from "../../Loading";
 
 class Profile extends Component {
+  state = {
+    ready: false
+  };
   componentDidMount() {
-    if (this.props.user) {
-      console.log(this.props.user);
-      this.props.getProfile(this.props.user);
-    }
+    setTimeout(() => this.setState({ ready: true }), 1000);
   }
   componentDidUpdate(prevProps) {
-    if (this.props.user !== prevProps.user) {
-      console.log(this.props.user);
-      this.props.getProfile(this.props.user);
+    if (prevProps.user !== this.props.user && this.props.user === null) {
+      return <Redirect to="/" />;
     }
   }
   render() {
+    if (!this.state.ready) {
+      return <Loading />;
+    }
+    if (!this.props.user) {
+      return <Redirect to="/" />;
+    }
     return (
-      <>
-        {this.props.profile ? (
-          <>
-            <h1>name: {this.props.profile.user.username}</h1>
-            <h4>bio: {this.props.profile.user.bio}</h4>
+      <div className="container">
+        <div className="mt-5">
+          <div className="row text-center align-center mx-auto">
+            <div className="col-12">
+              <img
+                className="circlize"
+                style={{ height: "250px" }}
+                src={this.props.profile.image}
+              />
+            </div>
+          </div>
+          <div className="row text-center align-center mx-auto">
+            <div className="col-12">
+              <h1 className=" text-center mt-5">{this.props.user.username}</h1>
+            </div>
+          </div>
 
-            <img src={this.props.profile.image} />
-          </>
-        ) : (
-          <></>
-        )}
-      </>
+          <div className="row text-center align-center mx-auto">
+            <div className="col-12">
+              <p>{this.props.profile.bio}</p>
+              <p>
+                From {this.props.profile.state}, {this.props.profile.country}
+              </p>
+            </div>
+
+            <div className="col-12 text-center align-center mx-auto">
+              <Link to="/bookings">My Bookings</Link>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
@@ -39,7 +65,8 @@ class Profile extends Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    profile: state.profileReducer.profile
+    profile: state.profileReducer.profile,
+    loading: state.profileReducer.loading
   };
 };
 const mapDispatchToProps = dispatch => {

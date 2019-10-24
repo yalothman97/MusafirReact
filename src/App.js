@@ -13,11 +13,12 @@ import Loading from "./Loading";
 import PackageDetail from "./Components/packages/PackageDetail";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home/Home";
+import Thankyou from "./Components/packages/Thankyou";
 
 // import { CartList } from "./Components/packages/CartList";
 import profile from "./Components/profile/profile";
 import CartList from "./Components/packages/CartList";
-
+import Bookings from "./Components/profile/Bookings";
 function App(props, { loading }) {
   return (
     <>
@@ -29,6 +30,8 @@ function App(props, { loading }) {
               <Loading />
             ) : (
               <Switch>
+                <Route path="/bookings" component={Bookings} />
+                <Route path="/thankyou" component={Thankyou} />
                 <Route path="/packages/:packageID" component={PackageDetail} />
                 <Route path="/packages" component={PackageList} />
                 <Route path="/profile" component={profile} />
