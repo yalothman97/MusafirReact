@@ -5,7 +5,6 @@ export const getProfile = user => {
   return async dispatch => {
     try {
       const res = await instance.get(`/profile/`, user);
-      console.log("L'Profile", res.data);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
