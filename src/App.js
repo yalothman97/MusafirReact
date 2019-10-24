@@ -18,23 +18,25 @@ import Home from "./Components/Home/Home";
 import profile from "./Components/profile/profile";
 import CartList from "./Components/packages/CartList";
 
-function App(props, { loading }) {
+function App({ loading }) {
   return (
     <>
       <Navbar />
       <div id="app" className="container-fluid">
         <div>
           <div>
-            {loading ? (
+            {!!loading ? (
               <Loading />
             ) : (
               <Switch>
+                {/* {this.props.user? */}
                 <Route path="/packages/:packageID" component={PackageDetail} />
-                <Route path="/packages" component={PackageList} />
-                <Route path="/profile" component={profile} />
-                <Route path="/cart" component={CartList} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/login" component={Login} />
+                <Route path="/packages/" component={PackageList} />
+                <Route path="/profile/" component={profile} />
+                <Route path="/cart/" component={CartList} />
+                <Route path="/signup/" component={Signup} />
+                <Route path="/login/" component={Login} />
+
                 <Route path="/" component={Home} />
                 <Redirect to="/" />
               </Switch>
@@ -47,7 +49,7 @@ function App(props, { loading }) {
 }
 
 const mapStateToProps = state => ({
-  loading: state.travelPackageReducer.loading,
+  loading: state.travelPackageReducer.loadingList,
   user: state.userReducer.user
 });
 

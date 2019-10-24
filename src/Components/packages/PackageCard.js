@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 
 export class PackageCard extends Component {
   render() {
@@ -13,7 +14,7 @@ export class PackageCard extends Component {
               <h4 className="card-text">{packageBundle.price} KD</h4>
             </div>
             <div
-              className=""
+              className="roundcorners"
               style={{
                 backgroundImage: `url(${packageBundle.image})`,
                 position: "relative"
@@ -24,6 +25,16 @@ export class PackageCard extends Component {
                 src={packageBundle.image}
                 alt={packageBundle.title}
               />
+              <div style={{ marginRight: "70px" }}>
+                <StarRatings
+                  rating={2}
+                  starRatedColor="black"
+                  changeRating={this.changeRating}
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="30px"
+                />
+              </div>
               <div
                 style={{
                   background: "rgb(255,255,255)",

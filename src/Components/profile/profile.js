@@ -4,6 +4,8 @@ import instance from "../../redux/actions/instance";
 
 // import profile from "../../redux/reducers/profile";
 import { getProfile } from "../../redux/actions/";
+import { black } from "ansi-colors";
+import { BookingList } from "./previousBooking";
 
 class Profile extends Component {
   componentDidMount() {
@@ -20,18 +22,30 @@ class Profile extends Component {
   }
   render() {
     return (
-      <>
+      <div className="text-center">
+        {console.log("profile Page")}
         {this.props.profile ? (
           <>
-            <h1>name: {this.props.profile.user.username}</h1>
-            <h4>bio: {this.props.profile.user.bio}</h4>
-
-            <img src={this.props.profile.image} />
+            <img
+              src={
+                this.props.profile.image
+                  ? this.props.profile.image
+                  : "https://initia.org/wp-content/uploads/2017/07/default-profile.png"
+              }
+            />
+            <h1>
+              {console.log(this.props.profile.user.username)}
+              {this.props.profile.user.username}
+            </h1>
+            <h1>
+              {this.props.profile.bio ? this.props.profile.bio : "......"}
+            </h1>
           </>
         ) : (
           <></>
         )}
-      </>
+        <BookingList />
+      </div>
     );
   }
 }

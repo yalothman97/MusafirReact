@@ -5,6 +5,8 @@ import { addItemToCart } from "../../redux/actions";
 import { getTravelPackageDetail } from "../../redux/actions/";
 import Loading from "../../Loading";
 
+// import StarRatings from "./react-star-ratings";
+
 class PackageDetail extends Component {
   state = {
     quantity: 0
@@ -81,6 +83,7 @@ class PackageDetail extends Component {
 }
 const mapStateToProps = state => ({
   // travelPackageReducer: state.travelPackageReducer
+  loading: state.travelPackageReducer.loading,
   packageItem: state.travelPackageReducer.packageItem
 });
 

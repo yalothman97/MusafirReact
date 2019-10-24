@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { checkoutCart } from "../../redux/actions";
 import CartItem from "./CartItem";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 class CartList extends Component {
   checkout = () => {
     if (this.props.user) {
       this.props.checkoutCart(this.props.items);
-      alert("Thank you");
+      alert("Enjoy your vacation :D");
     } else {
-      // this.props.navigation.navigate("Login");
+      return this.props.history.push("login/");
+
       //redirect tologin
     }
   };
@@ -22,10 +24,11 @@ class CartList extends Component {
           </button>
         );
       } else {
-        return <h1> There is no items in your cart </h1>;
+        return <></>;
       }
     };
     let items = this.props.items;
+    console.log(items);
     let cartItems;
     if (items) {
       cartItems = items.map((item, index) => (
@@ -34,8 +37,14 @@ class CartList extends Component {
     }
 
     return (
-      <div>
-        {cartItems}
+      <div className="text-center m-4">
+        <div className="text-center m-4 jumbotron">
+          {this.props.items.length ? (
+            cartItems
+          ) : (
+            <h1>There are no items in your cart</h1>
+          )}
+        </div>
         {checkoutButton()}
       </div>
     );

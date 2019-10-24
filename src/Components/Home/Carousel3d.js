@@ -3,7 +3,7 @@ import Carousel from "react-spring-3d-carousel";
 import React, { Component } from "react";
 import uuidv4 from "uuid";
 import { config } from "react-spring";
-
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Carousel3d extends Component {
@@ -25,11 +25,13 @@ class Carousel3d extends Component {
       return {
         key: uuidv4(),
         content: (
-          <img
-            src={packageBundle.image}
-            alt={packageBundle.title}
-            className="roundcorners"
-          />
+          <Link to={`/packages/${packageBundle.id}`}>
+            <img
+              src={packageBundle.image}
+              alt={packageBundle.title}
+              className="roundcorners"
+            />
+          </Link>
         )
       };
     });

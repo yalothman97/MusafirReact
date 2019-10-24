@@ -4,22 +4,19 @@ import { connect } from "react-redux";
 
 class CartItem extends Component {
   render() {
-    const item = this.props;
+    const item = this.props.item;
     console.log(item);
     return (
       <div>
         <div>
-          <div> {item.title} </div>
-
-          <div>{item.quantity} person(s)</div>
-          <img src={item.image} />
+          <h2> {item.title} </h2>
+          <h4>{item.quantity} person(s)</h4>
         </div>
         <div>
           <button onClick={() => this.props.removeItemFromCart(item)}>
             trash
           </button>
         </div>
-        ghjhkl;
       </div>
     );
   }

@@ -8,17 +8,20 @@ const cartReducer = (state = initialState, action) => {
     case actionTypes.ADD_ITEM:
       const newitem = action.payload;
       return {
+        ...state,
         items: state.items.concat([newitem])
       };
 
     case actionTypes.REMOVE_ITEM:
       return {
+        ...state,
         items: state.items.filter(item => {
           return item !== action.payload;
         })
       };
     case actionTypes.CHECKOUT:
       return {
+        ...state,
         items: []
       };
     default:
