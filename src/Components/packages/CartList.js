@@ -7,7 +7,6 @@ class CartList extends Component {
   checkout = () => {
     if (this.props.user) {
       this.props.checkoutCart(this.props.items, this.props.history);
-      alert("Thank you");
     } else {
       this.props.haitory.push("/login");
     }
