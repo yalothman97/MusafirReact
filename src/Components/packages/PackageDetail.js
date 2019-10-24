@@ -5,8 +5,10 @@ import { addItemToCart } from "../../redux/actions";
 import { getTravelPackageDetail } from "../../redux/actions/";
 import Loading from "../../Loading";
 
+
 //Icons
 import { PlusCircle, MinusCircle } from "react-feather";
+
 
 class PackageDetail extends Component {
   state = {
@@ -99,6 +101,7 @@ class PackageDetail extends Component {
 }
 const mapStateToProps = state => ({
   // travelPackageReducer: state.travelPackageReducer
+  loading: state.travelPackageReducer.loading,
   packageItem: state.travelPackageReducer.packageItem
 });
 

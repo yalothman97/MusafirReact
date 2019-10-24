@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { checkoutCart } from "../../redux/actions";
 import CartItem from "./CartItem";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 class CartList extends Component {
   checkout = () => {
     if (this.props.user) {
-      this.props.checkoutCart(this.props.items, this.props.history);
+
+      this.props.checkoutCart(this.props.items);
+      alert("Enjoy your vacation :D");
     } else {
-      this.props.haitory.push("/login");
+      return this.props.history.push("login/");
+
+      //redirect tologin
+
     }
   };
   render() {
@@ -20,17 +26,13 @@ class CartList extends Component {
           </button>
         );
       } else {
-        return (
-          <div className="mt-5 container">
-            <h1 className="align-text text-center mb-5ç">
-              {" "}
-              Your cart is empty{" "}
-            </h1>
-          </div>
-        );
+
+        return <></>;
+
       }
     };
     let items = this.props.items;
+    console.log(items);
     let cartItems;
     if (items) {
       cartItems = items
@@ -44,14 +46,21 @@ class CartList extends Component {
     }
 
     return (
-      <div className="container">
+
+     <div className="container">
         <div className="jumbotron bg-transparent border">
-          <table>
-            <thead></thead>
-            {cartItems}
-          </table>
-          {checkoutButton()}
+             <table>
+             <thead></thead>
+          {this.props.items.length ? (
+            cartItems
+          ) : (
+            <h1>There are no items in your cart</h1>
+          )}
+     </table>
+        {checkoutButton()}
         </div>
+    
+
       </div>
     );
   }

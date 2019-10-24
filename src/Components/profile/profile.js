@@ -5,7 +5,12 @@ import { Redirect, Link } from "react-router-dom";
 
 // import profile from "../../redux/reducers/profile";
 import { getProfile } from "../../redux/actions/";
+
+import { black } from "ansi-colors";
+import { BookingList } from "./previousBooking";
+
 import Loading from "../../Loading";
+
 
 class Profile extends Component {
   state = {
@@ -27,6 +32,7 @@ class Profile extends Component {
       return <Redirect to="/" />;
     }
     return (
+
       <div className="container">
         <div className="mt-5">
           <div className="row text-center align-center mx-auto">
@@ -34,7 +40,11 @@ class Profile extends Component {
               <img
                 className="circlize"
                 style={{ height: "250px" }}
-                src={this.props.profile.image}
+                src={
+                this.props.profile.image
+                  ? this.props.profile.image
+                  : "https://initia.org/wp-content/uploads/2017/07/default-profile.png"
+              }
               />
             </div>
           </div>
@@ -46,7 +56,7 @@ class Profile extends Component {
 
           <div className="row text-center align-center mx-auto">
             <div className="col-12">
-              <p>{this.props.profile.bio}</p>
+              <p>{this.props.profile.bio ? this.props.profile.bio : "......"}</p>
               <p>
                 From {this.props.profile.state}, {this.props.profile.country}
               </p>
@@ -57,6 +67,7 @@ class Profile extends Component {
             </div>
           </div>
         </div>
+
       </div>
     );
   }

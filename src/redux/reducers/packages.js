@@ -6,15 +6,16 @@ import {
 const initialState = {
   packages: [],
   packageItem: [],
-  loading: true
+  loadingPackage: true,
+  loadingList: true
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_TRAVELPACKAGES:
-      return { ...state, packages: payload, loading: false };
+      return { ...state, packages: payload, loadingList: false };
     case GET_TRAVELPACKAGEDETAIL:
-      return { ...state, packageItem: payload, loading: false };
+      return { ...state, packageItem: payload, loadingPackage: false };
     default:
       return state;
   }

@@ -7,7 +7,8 @@ import { Trash2 } from "react-feather";
 
 class CartItem extends Component {
   render() {
-    const { item } = this.props;
+
+    const { item } = this.props.item;
 
     return (
       <tr className="">
@@ -36,6 +37,7 @@ class CartItem extends Component {
           </button>
         </td>
       </tr>
+
     );
   }
 }

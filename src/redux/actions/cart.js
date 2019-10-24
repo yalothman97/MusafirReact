@@ -4,7 +4,7 @@ import instance from "./instance";
 
 export const addItemToCart = (packageItem, quantity) => ({
   type: actionTypes.ADD_ITEM,
-  payload: { quantity: quantity, id: packageItem.id }
+  payload: { title: packageItem.title, quantity: quantity, id: packageItem.id }
 });
 
 export const removeItemFromCart = item => ({

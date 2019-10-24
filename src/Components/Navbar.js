@@ -38,6 +38,11 @@ class Navbar extends Component {
                   <h6>Packages</h6>
                 </Link>
               </li>
+              <li className="ml-5 mt-2">
+                <Link to="/cart">
+                  <h6>Cart</h6>
+                </Link>
+              </li>
               {this.props.user ? (
                 <>
                   <li className="nav-item dropdown">
@@ -64,12 +69,6 @@ class Navbar extends Component {
                       </li>
 
                       <div className="dropdown-divider"></div>
-
-                      <li className="ml-5 mt-2">
-                        <Link to="/cart">
-                          <h6>Cart</h6>
-                        </Link>
-                      </li>
 
                       <div className="dropdown-divider"></div>
 
